@@ -9,7 +9,8 @@
 >
 > The **collection separation follows the site's information architecture**, taken from the
 > Claude Design handoff (`Resume Website-handoff.zip` on `main`): a terminal/CRT-style portfolio
-> with pages **Home · Work · Projects · Systems · About**. See §2a for the page → collection map.
+> with pages **Home · Work · Projects · Systems · About**. See §2a for the page → collection map,
+> and [`ui-collection-map.md`](./ui-collection-map.md) for the field-level UI mapping.
 
 ---
 

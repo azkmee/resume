@@ -6,6 +6,7 @@ A living record of my professional accomplishments and resume material.
 
 - [`accomplishments-log.md`](./accomplishments-log.md) — STAR-format log of wins, used as source material when updating my CV.
 - [`docs/nosql-schema.md`](./docs/nosql-schema.md) — MongoDB schema plan for the resume + portfolio + blog website.
+- [`docs/ui-collection-map.md`](./docs/ui-collection-map.md) — field-level map from the design's UI to the collections.
 - [`db/`](./db) — runnable scaffold: `$jsonSchema` validators, indexes, seed data, and setup/migration/seed scripts.
 
 ## Resume website (MongoDB-backed)
