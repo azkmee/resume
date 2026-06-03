@@ -1,0 +1,64 @@
+{
+  "bsonType": "object",
+  "title": "profile",
+  "description": "Singleton document describing the site owner. _id is the literal string 'profile'.",
+  "required": ["_id", "name", "headline", "updatedAt"],
+  "properties": {
+    "_id": { "enum": ["profile"], "description": "Always the literal 'profile'." },
+    "name": { "bsonType": "string" },
+    "headline": { "bsonType": "string" },
+    "pronouns": { "bsonType": ["string", "null"] },
+    "location": {
+      "bsonType": "object",
+      "properties": {
+        "city": { "bsonType": "string" },
+        "country": { "bsonType": "string" },
+        "timezone": { "bsonType": "string" }
+      }
+    },
+    "summary": { "bsonType": "string" },
+    "avatarMediaId": { "bsonType": ["objectId", "null"] },
+    "contacts": {
+      "bsonType": "object",
+      "properties": {
+        "email": { "bsonType": ["string", "null"] },
+        "phone": { "bsonType": ["string", "null"] }
+      }
+    },
+    "socials": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "object",
+        "required": ["platform", "url"],
+        "properties": {
+          "platform": { "bsonType": "string" },
+          "url": { "bsonType": "string" },
+          "handle": { "bsonType": ["string", "null"] }
+        }
+      }
+    },
+    "currentRole": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "title": { "bsonType": "string" },
+        "company": { "bsonType": "string" },
+        "since": { "bsonType": "string" }
+      }
+    },
+    "resume": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "latestPdfMediaId": { "bsonType": ["objectId", "null"] },
+        "lastUpdated": { "bsonType": ["date", "null"] }
+      }
+    },
+    "availability": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "openToWork": { "bsonType": "bool" },
+        "note": { "bsonType": ["string", "null"] }
+      }
+    },
+    "updatedAt": { "bsonType": "date" }
+  }
+}

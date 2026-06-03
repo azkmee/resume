@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "direct-report-coaching-2026",
+    "author": { "name": "Direct report", "role": "Backend Engineer", "company": "ESGpedia", "avatarMediaId": null },
+    "relationship": "report",
+    "quote": "The biweekly 1:1s and pair-design sessions on TDDs took me from implementing specs to owning module design. (Placeholder — replace with a real, attributed quote before publishing.)",
+    "date": "2026-05",
+    "tags": ["leadership", "mentorship"],
+    "featured": true,
+    "order": 0,
+    "visibility": "public",
+    "status": "draft",
+    "provenance": { "source": "human", "sourceRef": "accomplishments-log.md#2026-04-mentoring", "reviewedBy": null },
+    "publishedAt": null,
+    "version": 1
+  }
+]

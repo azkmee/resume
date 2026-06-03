@@ -1,0 +1,58 @@
+{
+  "profile": [],
+  "experiences": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "current": -1, "startDate": -1 }, "options": { "name": "by_current_start" } },
+    { "keys": { "order": 1 }, "options": { "name": "by_order" } },
+    { "keys": { "status": 1, "visibility": 1 }, "options": { "name": "by_status_visibility" } }
+  ],
+  "accomplishments": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "experienceId": 1, "date.iso": -1 }, "options": { "name": "by_experience_date" } },
+    { "keys": { "experienceSlug": 1 }, "options": { "name": "by_experience_slug" } },
+    { "keys": { "tags": 1 }, "options": { "name": "by_tags" } },
+    { "keys": { "status": 1, "updatedAt": -1 }, "options": { "name": "by_status_updated" } },
+    {
+      "keys": { "title": "text", "star.situation": "text", "star.task": "text", "resumeBullets.text": "text" },
+      "options": { "name": "text_search", "weights": { "title": 10, "resumeBullets.text": 5 } }
+    }
+  ],
+  "projects": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "featured": -1, "order": 1 }, "options": { "name": "by_featured_order" } },
+    { "keys": { "status": 1, "period.end": -1 }, "options": { "name": "by_status_end" } },
+    { "keys": { "tags": 1 }, "options": { "name": "by_tags" } },
+    { "keys": { "techStack": 1 }, "options": { "name": "by_tech" } },
+    { "keys": { "name": "text", "tagline": "text", "description": "text" }, "options": { "name": "text_search" } }
+  ],
+  "skills": [
+    { "keys": { "category": 1, "name": 1 }, "options": { "unique": true, "name": "uniq_category_name" } },
+    { "keys": { "category": 1, "order": 1 }, "options": { "name": "by_category_order" } },
+    { "keys": { "featured": -1 }, "options": { "name": "by_featured" } }
+  ],
+  "education": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "endYear": -1 }, "options": { "name": "by_end_year" } }
+  ],
+  "blog_posts": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "status": 1, "publishedAt": -1 }, "options": { "name": "by_status_published" } },
+    { "keys": { "tags": 1 }, "options": { "name": "by_tags" } },
+    { "keys": { "series.id": 1, "series.part": 1 }, "options": { "name": "by_series" } },
+    { "keys": { "title": "text", "excerpt": "text" }, "options": { "name": "text_search" } }
+  ],
+  "media": [
+    { "keys": { "key": 1 }, "options": { "unique": true, "sparse": true, "name": "uniq_key" } },
+    { "keys": { "kind": 1 }, "options": { "name": "by_kind" } },
+    { "keys": { "checksum": 1 }, "options": { "name": "by_checksum" } },
+    { "keys": { "tags": 1 }, "options": { "name": "by_tags" } }
+  ],
+  "pages": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "placement": 1, "order": 1 }, "options": { "name": "by_placement_order" } }
+  ],
+  "testimonials": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "featured": -1, "order": 1 }, "options": { "name": "by_featured_order" } }
+  ]
+}

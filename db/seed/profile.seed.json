@@ -1,0 +1,17 @@
+{
+  "_id": "profile",
+  "name": "Azmi",
+  "headline": "Software Engineering Lead",
+  "pronouns": null,
+  "location": { "city": "Singapore", "country": "SG", "timezone": "Asia/Singapore" },
+  "summary": "Software Engineering Lead at ESGpedia building ESG data & certification registry products on a Java/Spring Boot + React stack. Promoted from Senior SWE; now manage 2 remote backend engineers and run sprint AARs across a 7-engineer backend group.",
+  "avatarMediaId": null,
+  "contacts": { "email": "azmi_aang@hotmail.com", "phone": null },
+  "socials": [
+    { "platform": "github", "url": "https://github.com/azkmee", "handle": "azkmee" }
+  ],
+  "currentRole": { "title": "Software Engineering Lead", "company": "ESGpedia", "since": "2026-04" },
+  "resume": { "latestPdfMediaId": null, "lastUpdated": null },
+  "availability": { "openToWork": false, "note": null },
+  "updatedAt": "2026-06-03T00:00:00.000Z"
+}

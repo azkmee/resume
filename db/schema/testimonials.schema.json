@@ -1,0 +1,41 @@
+{
+  "bsonType": "object",
+  "title": "testimonials",
+  "description": "A recommendation / quote from a colleague.",
+  "required": ["slug", "author", "quote", "status", "provenance"],
+  "properties": {
+    "slug": { "bsonType": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "author": {
+      "bsonType": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "bsonType": "string" },
+        "role": { "bsonType": ["string", "null"] },
+        "company": { "bsonType": ["string", "null"] },
+        "avatarMediaId": { "bsonType": ["objectId", "null"] }
+      }
+    },
+    "relationship": { "enum": ["manager", "report", "peer", "client", "mentor", "other", null] },
+    "quote": { "bsonType": "string" },
+    "date": { "bsonType": ["string", "null"] },
+    "tags": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "featured": { "bsonType": "bool" },
+    "order": { "bsonType": ["int", "long", "double"] },
+    "visibility": { "enum": ["public", "unlisted", "private"] },
+    "status": { "enum": ["draft", "in_review", "needs_review", "published", "archived"] },
+    "provenance": {
+      "bsonType": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "enum": ["claude", "human", "import"] },
+        "model": { "bsonType": ["string", "null"] },
+        "sourceRef": { "bsonType": ["string", "null"] },
+        "reviewedBy": { "bsonType": ["string", "null"] }
+      }
+    },
+    "createdAt": { "bsonType": "date" },
+    "updatedAt": { "bsonType": "date" },
+    "publishedAt": { "bsonType": ["date", "null"] },
+    "version": { "bsonType": ["int", "long", "double"] }
+  }
+}

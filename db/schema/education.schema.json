@@ -1,0 +1,38 @@
+{
+  "bsonType": "object",
+  "title": "education",
+  "description": "A degree or certificate.",
+  "required": ["slug", "institution", "credential"],
+  "properties": {
+    "slug": { "bsonType": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "institution": { "bsonType": "string" },
+    "credential": { "bsonType": "string" },
+    "field": { "bsonType": ["string", "null"] },
+    "startYear": { "bsonType": ["int", "long", "double", "null"] },
+    "endYear": { "bsonType": ["int", "long", "double", "null"] },
+    "location": {
+      "bsonType": ["object", "null"],
+      "properties": { "city": { "bsonType": "string" }, "country": { "bsonType": "string" } }
+    },
+    "highlights": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "order": { "bsonType": ["int", "long", "double"] },
+    "featured": { "bsonType": "bool" },
+    "visibility": { "enum": ["public", "unlisted", "private"] },
+    "status": { "enum": ["draft", "in_review", "needs_review", "published", "archived"] },
+    "tags": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "provenance": {
+      "bsonType": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "enum": ["claude", "human", "import"] },
+        "model": { "bsonType": ["string", "null"] },
+        "sourceRef": { "bsonType": ["string", "null"] },
+        "reviewedBy": { "bsonType": ["string", "null"] }
+      }
+    },
+    "createdAt": { "bsonType": "date" },
+    "updatedAt": { "bsonType": "date" },
+    "publishedAt": { "bsonType": ["date", "null"] },
+    "version": { "bsonType": ["int", "long", "double"] }
+  }
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "slug": "about",
+    "title": "About",
+    "kind": "page",
+    "placement": "about",
+    "body": {
+      "format": "blocks",
+      "blocks": [
+        { "key": "a1", "type": "markdown", "order": 0, "text": "I'm a Software Engineering Lead at ESGpedia in Singapore, working on ESG data and certification registry products. I came up through the PowerX apprenticeship and grew into engineering leadership." },
+        { "key": "a2", "type": "callout", "order": 1, "variant": "info", "text": "Currently focused on team growth, sprint process, and bringing AI tooling into the codebase." }
+      ]
+    },
+    "tags": [],
+    "featured": false,
+    "order": 0,
+    "visibility": "public",
+    "status": "draft",
+    "seo": { "title": "About Azmi", "description": "Software Engineering Lead at ESGpedia.", "ogImageId": null },
+    "provenance": { "source": "human", "sourceRef": null, "reviewedBy": null },
+    "publishedAt": null,
+    "version": 1
+  }
+]

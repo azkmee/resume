@@ -1,0 +1,263 @@
+[
+  {
+    "category": "Languages",
+    "name": "Java",
+    "level": 5,
+    "years": null,
+    "featured": true,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Languages",
+    "name": "Python",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Languages",
+    "name": "JavaScript (Node.js)",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Client-side",
+    "name": "HTML",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Client-side",
+    "name": "CSS",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Client-side",
+    "name": "React",
+    "level": 5,
+    "years": null,
+    "featured": true,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Client-side",
+    "name": "Redux",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 3,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Server-side / Frameworks",
+    "name": "Spring Boot",
+    "level": 5,
+    "years": null,
+    "featured": true,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Server-side / Frameworks",
+    "name": "Node.js",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data / Infra",
+    "name": "MySQL",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data / Infra",
+    "name": "MongoDB",
+    "level": 5,
+    "years": null,
+    "featured": true,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data / Infra",
+    "name": "Redis",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data / Infra",
+    "name": "AWS RDS",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 3,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data / Infra",
+    "name": "AWS",
+    "level": null,
+    "years": null,
+    "featured": true,
+    "order": 4,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data / Infra",
+    "name": "AWS Textract",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 5,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "DB tooling",
+    "name": "Flyway",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Testing / DevOps",
+    "name": "JUnit",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Testing / DevOps",
+    "name": "Git",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Testing / DevOps",
+    "name": "Agile",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Domain",
+    "name": "ESG data",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Domain",
+    "name": "Certification registries",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Domain",
+    "name": "Blockchain (STACS / MAS Greenprint)",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Domain",
+    "name": "OCR / document pipelines",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 3,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Leadership / Process",
+    "name": "Sprint planning",
+    "level": null,
+    "years": null,
+    "featured": true,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Leadership / Process",
+    "name": "Story-point estimation",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Leadership / Process",
+    "name": "AAR facilitation",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Leadership / Process",
+    "name": "Remote team management",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 3,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Leadership / Process",
+    "name": "1:1s & mentorship",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 4,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Leadership / Process",
+    "name": "Technical interviewing",
+    "level": null,
+    "years": null,
+    "featured": false,
+    "order": 5,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  }
+]

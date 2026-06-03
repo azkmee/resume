@@ -1,0 +1,97 @@
+{
+  "bsonType": "object",
+  "title": "blog_posts",
+  "description": "A blog article with a block-based body (text / image / diagram / html / code / ...).",
+  "required": ["slug", "title", "body", "status", "provenance"],
+  "properties": {
+    "slug": { "bsonType": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title": { "bsonType": "string" },
+    "excerpt": { "bsonType": ["string", "null"] },
+    "coverMediaId": { "bsonType": ["objectId", "null"] },
+    "author": { "bsonType": ["string", "objectId", "null"] },
+    "readingTimeMinutes": { "bsonType": ["int", "long", "double", "null"] },
+    "wordCount": { "bsonType": ["int", "long", "double", "null"] },
+    "series": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "id": { "bsonType": "string" },
+        "title": { "bsonType": "string" },
+        "part": { "bsonType": ["int", "long", "double"] }
+      }
+    },
+    "relatedPostIds": { "bsonType": "array", "items": { "bsonType": "objectId" } },
+    "body": {
+      "bsonType": "object",
+      "required": ["format", "blocks"],
+      "properties": {
+        "format": { "enum": ["blocks", "markdown"] },
+        "markdown": { "bsonType": ["string", "null"] },
+        "blocks": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": ["type"],
+            "properties": {
+              "key": { "bsonType": "string" },
+              "order": { "bsonType": ["int", "long", "double"] },
+              "type": {
+                "enum": ["markdown", "html", "image", "gallery", "diagram", "code", "callout", "embed", "quote", "divider"]
+              },
+              "text": { "bsonType": ["string", "null"] },
+              "html": { "bsonType": ["string", "null"] },
+              "sanitized": { "bsonType": "bool" },
+              "mediaId": { "bsonType": ["objectId", "null"] },
+              "url": { "bsonType": ["string", "null"] },
+              "alt": { "bsonType": ["string", "null"] },
+              "caption": { "bsonType": ["string", "null"] },
+              "width": { "bsonType": ["int", "long", "double", "null"] },
+              "height": { "bsonType": ["int", "long", "double", "null"] },
+              "items": { "bsonType": "array" },
+              "engine": { "enum": ["mermaid", "excalidraw", "svg", null] },
+              "source": { "bsonType": ["string", "null"] },
+              "renderedMediaId": { "bsonType": ["objectId", "null"] },
+              "language": { "bsonType": ["string", "null"] },
+              "filename": { "bsonType": ["string", "null"] },
+              "code": { "bsonType": ["string", "null"] },
+              "variant": { "bsonType": ["string", "null"] },
+              "provider": { "bsonType": ["string", "null"] },
+              "cite": { "bsonType": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "tags": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "featured": { "bsonType": "bool" },
+    "order": { "bsonType": ["int", "long", "double"] },
+    "visibility": { "enum": ["public", "unlisted", "private"] },
+    "status": { "enum": ["draft", "in_review", "needs_review", "published", "archived"] },
+    "seo": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "title": { "bsonType": ["string", "null"] },
+        "description": { "bsonType": ["string", "null"] },
+        "keywords": { "bsonType": "array", "items": { "bsonType": "string" } },
+        "ogImageId": { "bsonType": ["objectId", "null"] },
+        "canonicalUrl": { "bsonType": ["string", "null"] }
+      }
+    },
+    "provenance": {
+      "bsonType": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "enum": ["claude", "human", "import"] },
+        "model": { "bsonType": ["string", "null"] },
+        "sourcePrompt": { "bsonType": ["string", "null"] },
+        "sourceRef": { "bsonType": ["string", "null"] },
+        "generatedAt": { "bsonType": ["date", "null"] },
+        "reviewedBy": { "bsonType": ["string", "null"] },
+        "reviewedAt": { "bsonType": ["date", "null"] }
+      }
+    },
+    "createdAt": { "bsonType": "date" },
+    "updatedAt": { "bsonType": "date" },
+    "publishedAt": { "bsonType": ["date", "null"] },
+    "version": { "bsonType": ["int", "long", "double"] }
+  }
+}

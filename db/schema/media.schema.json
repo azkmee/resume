@@ -1,0 +1,39 @@
+{
+  "bsonType": "object",
+  "title": "media",
+  "description": "Storage-abstracted asset registry. One document per image / diagram / file.",
+  "required": ["kind", "storage", "mime"],
+  "properties": {
+    "kind": { "enum": ["image", "diagram", "file", "video"] },
+    "storage": { "enum": ["r2", "s3", "cloudinary", "gridfs", "inline"] },
+    "url": { "bsonType": ["string", "null"], "description": "Public URL for r2/s3/cloudinary." },
+    "key": { "bsonType": ["string", "null"], "description": "Object key for r2/s3; unique when present." },
+    "gridfsId": { "bsonType": ["objectId", "null"], "description": "-> fs.files._id when storage = gridfs." },
+    "inline": {
+      "bsonType": ["object", "null"],
+      "description": "Bytes embedded in the doc when storage = inline (small SVG / base64).",
+      "properties": {
+        "encoding": { "enum": ["svg", "base64"] },
+        "data": { "bsonType": "string" }
+      }
+    },
+    "mime": { "bsonType": "string" },
+    "bytes": { "bsonType": ["int", "long", "double", "null"] },
+    "width": { "bsonType": ["int", "long", "double", "null"] },
+    "height": { "bsonType": ["int", "long", "double", "null"] },
+    "alt": { "bsonType": ["string", "null"] },
+    "blurhash": { "bsonType": ["string", "null"] },
+    "checksum": { "bsonType": ["string", "null"] },
+    "diagramSource": {
+      "bsonType": ["object", "null"],
+      "description": "Set when this asset is a rendered diagram; keeps the editable source.",
+      "properties": {
+        "engine": { "enum": ["mermaid", "excalidraw", "svg"] },
+        "source": { "bsonType": "string" }
+      }
+    },
+    "tags": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "createdAt": { "bsonType": "date" },
+    "updatedAt": { "bsonType": "date" }
+  }
+}

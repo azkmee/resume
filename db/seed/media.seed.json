@@ -1,0 +1,40 @@
+[
+  {
+    "kind": "image",
+    "storage": "r2",
+    "url": "https://cdn.example.com/blog/before-after.webp",
+    "key": "blog/before-after.webp",
+    "gridfsId": null,
+    "inline": null,
+    "mime": "image/webp",
+    "bytes": 84210,
+    "width": 1200,
+    "height": 675,
+    "alt": "Before and after architecture",
+    "blurhash": null,
+    "checksum": null,
+    "diagramSource": null,
+    "tags": ["architecture", "blog"],
+    "createdAt": "2026-06-03T00:00:00.000Z",
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "kind": "diagram",
+    "storage": "inline",
+    "url": null,
+    "key": null,
+    "gridfsId": null,
+    "inline": { "encoding": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><rect width='10' height='10' fill='#0a7'/></svg>" },
+    "mime": "image/svg+xml",
+    "bytes": null,
+    "width": 10,
+    "height": 10,
+    "alt": "Example inline diagram",
+    "blurhash": null,
+    "checksum": null,
+    "diagramSource": { "engine": "mermaid", "source": "graph TD; A-->B;" },
+    "tags": ["diagram"],
+    "createdAt": "2026-06-03T00:00:00.000Z",
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "name": "resume-db",
+  "private": true,
+  "type": "module",
+  "description": "MongoDB schema setup, migration, and seed scripts for the resume website.",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "migrate": "node scripts/migrate-accomplishments.mjs",
+    "seed": "node scripts/seed.mjs"
+  },
+  "dependencies": {
+    "mongodb": "^6.12.0"
+  }
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "slug": "software-engineering-lead-esgpedia",
+    "company": "ESGpedia",
+    "title": "Software Engineering Lead",
+    "employmentType": "full_time",
+    "location": {
+      "city": "Singapore",
+      "country": "SG"
+    },
+    "workMode": "hybrid",
+    "startDate": "2026-04",
+    "endDate": null,
+    "current": true,
+    "summary": null,
+    "standingScope": [
+      "Direct reports: 2 backend engineers, fully remote — based in Indonesia 🇮🇩 and the Philippines 🇵🇭",
+      "Wider oversight: AAR (After-Action Review) lead every sprint for 5 additional backend engineers (7 backends total in scope)",
+      "Sprint planning: PM defines the tickets that need work; I assign to the right engineer, estimate story points, and brief the assigned dev before pickup",
+      "Reporting line: Head of Engineering",
+      "Wider squad context: alongside the 7 backend engineers — multiple frontend engineers, project & product managers, and 2 data team members _(confirm exact frontend count when you get a chance)_"
+    ],
+    "highlights": [],
+    "skills": [],
+    "order": 0,
+    "featured": true,
+    "visibility": "public",
+    "tags": [],
+    "status": "needs_review",
+    "provenance": {
+      "source": "import",
+      "sourceRef": "accomplishments-log.md#role-software-engineering-lead-esgpedia",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    "createdAt": "2026-06-03T02:46:03.379Z",
+    "updatedAt": "2026-06-03T02:46:03.379Z",
+    "publishedAt": null,
+    "version": 1
+  },
+  {
+    "slug": "senior-software-engineer-esgpedia",
+    "company": "ESGpedia",
+    "title": "Senior Software Engineer",
+    "employmentType": "full_time",
+    "location": {
+      "city": "Singapore",
+      "country": "SG"
+    },
+    "workMode": "hybrid",
+    "startDate": "2025-04",
+    "endDate": "2026-04",
+    "current": false,
+    "summary": null,
+    "standingScope": [],
+    "highlights": [],
+    "skills": [],
+    "order": 1,
+    "featured": false,
+    "visibility": "public",
+    "tags": [],
+    "status": "needs_review",
+    "provenance": {
+      "source": "import",
+      "sourceRef": "accomplishments-log.md#role-senior-software-engineer-esgpedia",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    "createdAt": "2026-06-03T02:46:03.379Z",
+    "updatedAt": "2026-06-03T02:46:03.379Z",
+    "publishedAt": null,
+    "version": 1
+  },
+  {
+    "slug": "software-engineer-esgpedia",
+    "company": "ESGpedia",
+    "title": "Software Engineer",
+    "employmentType": "full_time",
+    "location": {
+      "city": "Singapore",
+      "country": "SG"
+    },
+    "workMode": "hybrid",
+    "startDate": "2022-07",
+    "endDate": "2025-05",
+    "current": false,
+    "summary": null,
+    "standingScope": [],
+    "highlights": [],
+    "skills": [],
+    "order": 2,
+    "featured": false,
+    "visibility": "public",
+    "tags": [],
+    "status": "needs_review",
+    "provenance": {
+      "source": "import",
+      "sourceRef": "accomplishments-log.md#role-software-engineer-esgpedia",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    "createdAt": "2026-06-03T02:46:03.379Z",
+    "updatedAt": "2026-06-03T02:46:03.379Z",
+    "publishedAt": null,
+    "version": 1
+  },
+  {
+    "slug": "software-developer-internship-powerx-apprenticeship-esgpedia",
+    "company": "ESGpedia",
+    "title": "Software Developer Internship (PowerX Apprenticeship)",
+    "employmentType": "apprenticeship",
+    "location": null,
+    "workMode": null,
+    "startDate": "2021-07",
+    "endDate": "2022-07",
+    "current": false,
+    "summary": null,
+    "standingScope": [],
+    "highlights": [],
+    "skills": [],
+    "order": 3,
+    "featured": false,
+    "visibility": "public",
+    "tags": [],
+    "status": "needs_review",
+    "provenance": {
+      "source": "import",
+      "sourceRef": "accomplishments-log.md#role-software-developer-internship-powerx-apprenticeship-esgpedia",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    "createdAt": "2026-06-03T02:46:03.379Z",
+    "updatedAt": "2026-06-03T02:46:03.379Z",
+    "publishedAt": null,
+    "version": 1
+  }
+]

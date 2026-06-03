@@ -2,6 +2,14 @@
 .DS_Store
 Thumbs.db
 
+# Dependencies
+node_modules/
+package-lock.json
+
+# Env / secrets
+.env
+.env.local
+
 # Editors
 .vscode/
 .idea/

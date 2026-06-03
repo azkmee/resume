@@ -1,0 +1,26 @@
+{
+  "bsonType": "object",
+  "title": "skills",
+  "description": "A single skill. Group by category at render time.",
+  "required": ["category", "name"],
+  "properties": {
+    "category": {
+      "enum": [
+        "Languages",
+        "Client-side",
+        "Server-side / Frameworks",
+        "Data / Infra",
+        "DB tooling",
+        "Testing / DevOps",
+        "Domain",
+        "Leadership / Process"
+      ]
+    },
+    "name": { "bsonType": "string" },
+    "level": { "bsonType": ["int", "long", "double", "null"], "minimum": 1, "maximum": 5 },
+    "years": { "bsonType": ["int", "long", "double", "null"] },
+    "featured": { "bsonType": "bool" },
+    "order": { "bsonType": ["int", "long", "double"] },
+    "updatedAt": { "bsonType": "date" }
+  }
+}

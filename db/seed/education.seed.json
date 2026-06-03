@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "sutd-be-hons-engineering-systems-design",
+    "institution": "Singapore University of Technology and Design (SUTD)",
+    "credential": "B.E. (Hons), Engineering Systems & Design",
+    "field": "Engineering Systems & Design",
+    "startYear": 2017,
+    "endYear": 2020,
+    "location": { "city": "Singapore", "country": "SG" },
+    "highlights": [],
+    "order": 0,
+    "featured": true,
+    "visibility": "public",
+    "status": "needs_review",
+    "tags": ["degree"],
+    "provenance": { "source": "import", "sourceRef": "accomplishments-log.md#education", "reviewedBy": null },
+    "version": 1
+  },
+  {
+    "slug": "sutd-software-product-development-certificate",
+    "institution": "Singapore University of Technology and Design (SUTD)",
+    "credential": "Software & Product Development Certificate",
+    "field": "Software & Product Development",
+    "startYear": 2021,
+    "endYear": 2021,
+    "location": { "city": "Singapore", "country": "SG" },
+    "highlights": [],
+    "order": 1,
+    "featured": false,
+    "visibility": "public",
+    "status": "needs_review",
+    "tags": ["certificate"],
+    "provenance": { "source": "import", "sourceRef": "accomplishments-log.md#education", "reviewedBy": null },
+    "version": 1
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "ai-driven-in-repo-knowledge-base",
+    "title": "Replacing stale Confluence with an AI-driven in-repo knowledge base",
+    "excerpt": "Why we moved documentation out of VPN-gated Confluence and into the codebase, and how Claude keeps it current.",
+    "coverMediaId": null,
+    "author": "profile",
+    "readingTimeMinutes": 6,
+    "wordCount": 1100,
+    "series": { "id": "ai-tooling", "title": "AI Tooling", "part": 1 },
+    "relatedPostIds": [],
+    "body": {
+      "format": "blocks",
+      "blocks": [
+        { "key": "b1", "type": "markdown", "order": 0, "text": "## The problem\nOur Confluence docs went stale. Pages weren't updated, the codebase stayed the source of truth, and discoverability inside the repo was poor." },
+        { "key": "b2", "type": "callout", "order": 1, "variant": "info", "text": "This post is an example document demonstrating every block type the blog schema supports." },
+        { "key": "b3", "type": "diagram", "order": 2, "engine": "mermaid", "source": "graph TD; A[Codebase] --> B[In-repo README]; C[Claude] -->|generates / updates| B; B -->|reviewed by| D[Engineer]; D -->|publishes| B;", "renderedMediaId": null, "caption": "The generate → review → publish loop" },
+        { "key": "b4", "type": "image", "order": 3, "mediaId": null, "url": "https://cdn.example.com/blog/before-after.webp", "alt": "Before and after architecture", "caption": "Docs moved closer to the code", "width": 1200, "height": 675 },
+        { "key": "b5", "type": "code", "order": 4, "language": "js", "filename": "upsert.js", "code": "db.blog_posts.updateOne(\n  { slug },\n  { $setOnInsert: { createdAt: new Date(), version: 1 }, $set: { ...fields, updatedAt: new Date() } },\n  { upsert: true }\n);" },
+        { "key": "b6", "type": "gallery", "order": 5, "items": [ { "mediaId": null, "url": "https://cdn.example.com/blog/g1.webp", "alt": "Screenshot 1", "caption": "Index" }, { "mediaId": null, "url": "https://cdn.example.com/blog/g2.webp", "alt": "Screenshot 2", "caption": "Detail" } ] },
+        { "key": "b7", "type": "html", "order": 6, "html": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" loading=\"lazy\"></iframe>", "sanitized": true },
+        { "key": "b8", "type": "embed", "order": 7, "provider": "youtube", "url": "https://youtu.be/dQw4w9WgXcQ" },
+        { "key": "b9", "type": "quote", "order": 8, "text": "Bring the knowledge to where the work happens.", "cite": "An engineer, probably" },
+        { "key": "b10", "type": "divider", "order": 9 }
+      ]
+    },
+    "tags": ["ai", "documentation", "tooling"],
+    "featured": true,
+    "order": 0,
+    "visibility": "public",
+    "status": "draft",
+    "seo": {
+      "title": "AI-driven in-repo knowledge base",
+      "description": "Moving docs out of stale Confluence and into the codebase, kept current by Claude.",
+      "keywords": ["ai", "documentation", "knowledge base"],
+      "ogImageId": null,
+      "canonicalUrl": null
+    },
+    "provenance": {
+      "source": "claude",
+      "model": "claude-opus-4-8",
+      "sourcePrompt": "Draft a blog post about our AI-driven in-repo knowledge base experiment.",
+      "sourceRef": "accomplishments-log.md#2026-experimenting-with-ai-driven-in-repo-knowledge-base-in-progress",
+      "generatedAt": "2026-06-03T00:00:00.000Z",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    "publishedAt": null,
+    "version": 1
+  }
+]
