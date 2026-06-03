@@ -22,9 +22,14 @@ const SEED_DIR = join(__dirname, "..", "seed");
 // collection -> the field(s) used as the idempotency key for upserts
 const KEYS = {
   profile: ["_id"],
+  now: ["_id"],
+  site_settings: ["_id"],
   experiences: ["slug"],
   accomplishments: ["slug"],
+  case_studies: ["slug"],
   projects: ["slug"],
+  teardowns: ["slug"],
+  feed: ["slug"],
   skills: ["category", "name"],
   education: ["slug"],
   blog_posts: ["slug"],
@@ -32,6 +37,9 @@ const KEYS = {
   pages: ["slug"],
   testimonials: ["slug"],
 };
+
+// singletons & timestamp-only collections that should not get a content envelope
+const NO_ENVELOPE = new Set(["profile", "now", "site_settings", "skills", "media"]);
 
 // field names whose string values should be coerced to BSON Date
 const DATE_FIELDS = new Set([
@@ -77,7 +85,7 @@ try {
     let upserts = 0;
     for (const doc of docs) {
       // ensure timestamps exist
-      if (coll !== "profile" && coll !== "skills" && coll !== "media") {
+      if (!NO_ENVELOPE.has(coll)) {
         doc.createdAt ??= now;
         doc.updatedAt = now;
       } else {

@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "textract-backed-certificate-intake",
+    "code": "CS-01",
+    "title": "Textract-backed certificate intake",
+    "pitch": "From \"humans squint at PDFs\" to a pipeline that extracts & validates ESG certificates with high precision. Designed the schema, the queue, and the human-in-the-loop QA.",
+    "period": { "start": "2024", "end": "2026" },
+    "projectStatus": "shipped",
+    "stack": ["AWS Textract", "Spring Boot", "React"],
+    "result": [
+      { "label": "precision", "value": 99.4, "unit": "%" },
+      { "label": "throughput", "value": "3x", "unit": null }
+    ],
+    "experienceSlug": "software-engineer-esgpedia",
+    "derivedFrom": [],
+    "highlights": [],
+    "body": null,
+    "links": [],
+    "coverMediaId": null,
+    "gallery": [],
+    "tags": ["esg", "ocr", "aws"],
+    "featured": true,
+    "order": 0,
+    "visibility": "public",
+    "status": "needs_review",
+    "provenance": { "source": "import", "sourceRef": "Resume Website-handoff.zip#work.html", "reviewedBy": null },
+    "publishedAt": null,
+    "version": 1
+  },
+  {
+    "slug": "search-across-a-messy-registry",
+    "code": "CS-02",
+    "title": "Search across a messy registry",
+    "pitch": "Made the ESG registry actually queryable. Index design, query DSL, and a UI that doesn't make analysts cry.",
+    "period": { "start": "2023", "end": "2023" },
+    "projectStatus": "shipped",
+    "stack": ["MySQL", "MongoDB", "React/Redux"],
+    "result": [
+      { "label": "latency p50", "value": "sub-200ms", "unit": null }
+    ],
+    "experienceSlug": "software-engineer-esgpedia",
+    "derivedFrom": [],
+    "highlights": [],
+    "body": null,
+    "links": [],
+    "coverMediaId": null,
+    "gallery": [],
+    "tags": ["esg", "search"],
+    "featured": true,
+    "order": 1,
+    "visibility": "public",
+    "status": "needs_review",
+    "provenance": { "source": "import", "sourceRef": "Resume Website-handoff.zip#work.html", "reviewedBy": null },
+    "publishedAt": null,
+    "version": 1
+  }
+]

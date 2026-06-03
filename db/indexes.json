@@ -1,5 +1,7 @@
 {
   "profile": [],
+  "now": [],
+  "site_settings": [],
   "experiences": [
     { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
     { "keys": { "current": -1, "startDate": -1 }, "options": { "name": "by_current_start" } },
@@ -20,10 +22,31 @@
   "projects": [
     { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
     { "keys": { "featured": -1, "order": 1 }, "options": { "name": "by_featured_order" } },
-    { "keys": { "status": 1, "period.end": -1 }, "options": { "name": "by_status_end" } },
+    { "keys": { "projectStatus": 1, "period.end": -1 }, "options": { "name": "by_status_end" } },
     { "keys": { "tags": 1 }, "options": { "name": "by_tags" } },
     { "keys": { "techStack": 1 }, "options": { "name": "by_tech" } },
-    { "keys": { "name": "text", "tagline": "text", "description": "text" }, "options": { "name": "text_search" } }
+    { "keys": { "name": "text", "tagline": "text", "pitch": "text", "description": "text" }, "options": { "name": "text_search" } }
+  ],
+  "case_studies": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "featured": -1, "order": 1 }, "options": { "name": "by_featured_order" } },
+    { "keys": { "status": 1, "period.end": -1 }, "options": { "name": "by_status_end" } },
+    { "keys": { "experienceSlug": 1 }, "options": { "name": "by_experience" } },
+    { "keys": { "tags": 1 }, "options": { "name": "by_tags" } },
+    { "keys": { "title": "text", "pitch": "text" }, "options": { "name": "text_search" } }
+  ],
+  "teardowns": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "status": 1, "publishedAt": -1 }, "options": { "name": "by_status_published" } },
+    { "keys": { "featured": -1, "order": 1 }, "options": { "name": "by_featured_order" } },
+    { "keys": { "tags": 1 }, "options": { "name": "by_tags" } },
+    { "keys": { "title": "text", "target": "text", "excerpt": "text" }, "options": { "name": "text_search" } }
+  ],
+  "feed": [
+    { "keys": { "slug": 1 }, "options": { "unique": true, "name": "uniq_slug" } },
+    { "keys": { "status": 1, "date": -1 }, "options": { "name": "by_status_date" } },
+    { "keys": { "pinned": -1, "date": -1 }, "options": { "name": "by_pinned_date" } },
+    { "keys": { "kind": 1 }, "options": { "name": "by_kind" } }
   ],
   "skills": [
     { "keys": { "category": 1, "name": 1 }, "options": { "unique": true, "name": "uniq_category_name" } },

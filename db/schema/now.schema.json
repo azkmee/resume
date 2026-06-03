@@ -1,0 +1,24 @@
+{
+  "bsonType": "object",
+  "title": "now",
+  "description": "Singleton: the '/now — What I'm doing' panel (Home + About). _id is the literal 'now'.",
+  "required": ["_id", "entries", "updatedAt"],
+  "properties": {
+    "_id": { "enum": ["now"] },
+    "asOf": { "bsonType": ["string", "null"], "description": "e.g. '2026-05'." },
+    "entries": {
+      "bsonType": "array",
+      "description": "Ordered key/value rows: Building, Reading, Learning, Writing, City, Drinking, ...",
+      "items": {
+        "bsonType": "object",
+        "required": ["label", "value"],
+        "properties": {
+          "label": { "bsonType": "string" },
+          "value": { "bsonType": "string" },
+          "accent": { "enum": ["peach", "sage", "clay", "ink", null] }
+        }
+      }
+    },
+    "updatedAt": { "bsonType": "date" }
+  }
+}

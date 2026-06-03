@@ -16,7 +16,16 @@
         "timezone": { "bsonType": "string" }
       }
     },
-    "summary": { "bsonType": "string" },
+    "summary": { "bsonType": "string", "description": "Short hero/sub line." },
+    "bio": { "bsonType": ["string", "null"], "description": "Long-form 'About me' (markdown)." },
+    "status": {
+      "bsonType": ["object", "null"],
+      "description": "The 'Available for interesting problems' pill.",
+      "properties": {
+        "available": { "bsonType": "bool" },
+        "label": { "bsonType": ["string", "null"] }
+      }
+    },
     "avatarMediaId": { "bsonType": ["objectId", "null"] },
     "contacts": {
       "bsonType": "object",

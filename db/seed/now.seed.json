@@ -1,0 +1,13 @@
+{
+  "_id": "now",
+  "asOf": "2026-05",
+  "entries": [
+    { "label": "Building", "value": "finding my feet as engineering lead at ESGpedia", "accent": "peach" },
+    { "label": "Reading", "value": "Designing Data-Intensive Applications (again)", "accent": null },
+    { "label": "Learning", "value": "Sharper design reviews — fewer bikesheds, more decisions", "accent": null },
+    { "label": "Writing", "value": "A teardown of Linear's command palette", "accent": null },
+    { "label": "City", "value": "Singapore · SGT", "accent": null },
+    { "label": "Drinking", "value": "Kopi-O, two sugars", "accent": "clay" }
+  ],
+  "updatedAt": "2026-06-03T00:00:00.000Z"
+}

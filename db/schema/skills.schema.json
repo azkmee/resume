@@ -6,19 +6,22 @@
   "properties": {
     "category": {
       "enum": [
-        "Languages",
-        "Client-side",
-        "Server-side / Frameworks",
-        "Data / Infra",
-        "DB tooling",
-        "Testing / DevOps",
+        "Backend",
+        "Frontend",
+        "Data & cloud",
+        "Practice",
         "Domain",
         "Leadership / Process"
-      ]
+      ],
+      "description": "Aligned to the design's 'Daily-driver stack' grouping (Work page)."
     },
     "name": { "bsonType": "string" },
     "level": { "bsonType": ["int", "long", "double", "null"], "minimum": 1, "maximum": 5 },
     "years": { "bsonType": ["int", "long", "double", "null"] },
+    "affinity": {
+      "enum": ["reach_for", "comfortable", "working_on", null],
+      "description": "Maps to the About page's 'I reach for / Comfortable with / Working on' framing."
+    },
     "featured": { "bsonType": "bool" },
     "order": { "bsonType": ["int", "long", "double"] },
     "updatedAt": { "bsonType": "date" }

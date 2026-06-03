@@ -1,17 +1,13 @@
 {
   "bsonType": "object",
-  "title": "projects",
-  "description": "A portfolio project.",
-  "required": ["slug", "name", "status", "provenance"],
+  "title": "case_studies",
+  "description": "Flagship professional work (Work page, CS-xx). Distinct from side projects. Often derived from accomplishments.",
+  "required": ["slug", "title", "status", "provenance"],
   "properties": {
     "slug": { "bsonType": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "code": { "bsonType": ["string", "null"], "description": "Display id like 'P-04'." },
-    "name": { "bsonType": "string" },
-    "tagline": { "bsonType": ["string", "null"] },
-    "pitch": { "bsonType": ["string", "null"], "description": "One-line: what it does & why." },
-    "description": { "bsonType": ["string", "null"] },
-    "lesson": { "bsonType": ["string", "null"], "description": "One takeaway from building it." },
-    "role": { "bsonType": ["string", "null"] },
+    "code": { "bsonType": ["string", "null"], "description": "Display id like 'CS-01'." },
+    "title": { "bsonType": "string" },
+    "pitch": { "bsonType": ["string", "null"], "description": "One- or two-line summary shown on the card." },
     "period": {
       "bsonType": ["object", "null"],
       "properties": {
@@ -19,9 +15,37 @@
         "end": { "bsonType": ["string", "null"] }
       }
     },
-    "projectStatus": { "enum": ["shipped", "wip", "abandoned", "experiment", "maintained", "archived", null] },
-    "techStack": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "projectStatus": { "enum": ["shipped", "wip", "archived", "maintained", null] },
+    "stack": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "result": {
+      "bsonType": "array",
+      "description": "Headline outcomes, e.g. {label:'precision', value:99.4, unit:'%'}.",
+      "items": {
+        "bsonType": "object",
+        "required": ["label"],
+        "properties": {
+          "label": { "bsonType": "string" },
+          "value": { "bsonType": ["double", "int", "long", "string", "null"] },
+          "unit": { "bsonType": ["string", "null"] }
+        }
+      }
+    },
+    "experienceSlug": { "bsonType": ["string", "null"], "description": "-> experiences.slug it belongs to." },
+    "derivedFrom": {
+      "bsonType": "array",
+      "items": { "bsonType": "string" },
+      "description": "accomplishments.slug[] this write-up was distilled from."
+    },
     "highlights": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "body": {
+      "bsonType": ["object", "null"],
+      "description": "Optional expanded write-up; same block model as teardowns/blog_posts.",
+      "properties": {
+        "format": { "enum": ["blocks", "markdown"] },
+        "markdown": { "bsonType": ["string", "null"] },
+        "blocks": { "bsonType": "array" }
+      }
+    },
     "links": {
       "bsonType": "array",
       "items": {
@@ -36,18 +60,6 @@
     },
     "coverMediaId": { "bsonType": ["objectId", "null"] },
     "gallery": { "bsonType": "array", "items": { "bsonType": "objectId" } },
-    "metrics": {
-      "bsonType": "array",
-      "items": {
-        "bsonType": "object",
-        "required": ["label"],
-        "properties": {
-          "label": { "bsonType": "string" },
-          "value": { "bsonType": ["double", "int", "long", "null"] },
-          "unit": { "bsonType": ["string", "null"] }
-        }
-      }
-    },
     "tags": { "bsonType": "array", "items": { "bsonType": "string" } },
     "featured": { "bsonType": "bool" },
     "order": { "bsonType": ["int", "long", "double"] },
@@ -58,9 +70,7 @@
       "properties": {
         "title": { "bsonType": ["string", "null"] },
         "description": { "bsonType": ["string", "null"] },
-        "keywords": { "bsonType": "array", "items": { "bsonType": "string" } },
-        "ogImageId": { "bsonType": ["objectId", "null"] },
-        "canonicalUrl": { "bsonType": ["string", "null"] }
+        "ogImageId": { "bsonType": ["objectId", "null"] }
       }
     },
     "provenance": {

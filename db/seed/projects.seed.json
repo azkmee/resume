@@ -1,0 +1,28 @@
+[
+  {
+    "slug": "example-project",
+    "code": "P-04",
+    "name": "example_project",
+    "tagline": null,
+    "pitch": "Placeholder style-preview card from the design — replace with a real side project (name, pitch, stack, link, status, lesson).",
+    "description": null,
+    "lesson": "Debouncing intent ≠ debouncing input",
+    "role": null,
+    "period": { "start": null, "end": "2025-08" },
+    "projectStatus": "shipped",
+    "techStack": ["TypeScript", "Node"],
+    "highlights": [],
+    "links": [{ "type": "repo", "label": "GitHub", "url": "https://github.com/you/proj" }],
+    "coverMediaId": null,
+    "gallery": [],
+    "metrics": [],
+    "tags": ["sample"],
+    "featured": false,
+    "order": 0,
+    "visibility": "public",
+    "status": "draft",
+    "provenance": { "source": "import", "sourceRef": "Resume Website-handoff.zip#projects.html", "reviewedBy": null },
+    "publishedAt": null,
+    "version": 1
+  }
+]

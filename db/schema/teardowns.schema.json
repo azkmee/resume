@@ -1,0 +1,63 @@
+{
+  "bsonType": "object",
+  "title": "teardowns",
+  "description": "Systems analyses (Systems page). Long-form, block-based body plus the Observe -> Decompose -> Critique structure. status 'idea' = suggested-target backlog stub.",
+  "required": ["slug", "title", "status", "provenance"],
+  "properties": {
+    "slug": { "bsonType": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "number": { "bsonType": ["string", "null"], "description": "Display index like '01'." },
+    "title": { "bsonType": "string" },
+    "target": { "bsonType": ["string", "null"], "description": "The system being analysed, e.g. 'Linear command palette'." },
+    "excerpt": { "bsonType": ["string", "null"] },
+    "analysis": {
+      "bsonType": ["object", "null"],
+      "description": "The three-question frame; each may be plain text or markdown.",
+      "properties": {
+        "observe": { "bsonType": ["string", "null"] },
+        "decompose": { "bsonType": ["string", "null"] },
+        "critique": { "bsonType": ["string", "null"] }
+      }
+    },
+    "body": {
+      "bsonType": ["object", "null"],
+      "description": "Full write-up; same block model as blog_posts (markdown/image/diagram/code/html/...).",
+      "properties": {
+        "format": { "enum": ["blocks", "markdown"] },
+        "markdown": { "bsonType": ["string", "null"] },
+        "blocks": { "bsonType": "array" }
+      }
+    },
+    "coverMediaId": { "bsonType": ["objectId", "null"] },
+    "readingTimeMinutes": { "bsonType": ["int", "long", "double", "null"] },
+    "tags": { "bsonType": "array", "items": { "bsonType": "string" } },
+    "featured": { "bsonType": "bool" },
+    "order": { "bsonType": ["int", "long", "double"] },
+    "visibility": { "enum": ["public", "unlisted", "private"] },
+    "status": { "enum": ["idea", "draft", "in_review", "needs_review", "published", "archived"] },
+    "seo": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "title": { "bsonType": ["string", "null"] },
+        "description": { "bsonType": ["string", "null"] },
+        "ogImageId": { "bsonType": ["objectId", "null"] }
+      }
+    },
+    "provenance": {
+      "bsonType": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "enum": ["claude", "human", "import"] },
+        "model": { "bsonType": ["string", "null"] },
+        "sourcePrompt": { "bsonType": ["string", "null"] },
+        "sourceRef": { "bsonType": ["string", "null"] },
+        "generatedAt": { "bsonType": ["date", "null"] },
+        "reviewedBy": { "bsonType": ["string", "null"] },
+        "reviewedAt": { "bsonType": ["date", "null"] }
+      }
+    },
+    "createdAt": { "bsonType": "date" },
+    "updatedAt": { "bsonType": "date" },
+    "publishedAt": { "bsonType": ["date", "null"] },
+    "version": { "bsonType": ["int", "long", "double"] }
+  }
+}

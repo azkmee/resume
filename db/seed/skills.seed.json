@@ -1,173 +1,212 @@
 [
   {
-    "category": "Languages",
-    "name": "Java",
+    "category": "Backend",
+    "name": "Java 17",
     "level": 5,
     "years": null,
+    "affinity": "reach_for",
     "featured": true,
     "order": 0,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Languages",
-    "name": "Python",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 1,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Languages",
-    "name": "JavaScript (Node.js)",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 2,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Client-side",
-    "name": "HTML",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 0,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Client-side",
-    "name": "CSS",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 1,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Client-side",
-    "name": "React",
-    "level": 5,
-    "years": null,
-    "featured": true,
-    "order": 2,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Client-side",
-    "name": "Redux",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 3,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Server-side / Frameworks",
+    "category": "Backend",
     "name": "Spring Boot",
     "level": 5,
     "years": null,
-    "featured": true,
-    "order": 0,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Server-side / Frameworks",
-    "name": "Node.js",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 1,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Data / Infra",
-    "name": "MySQL",
-    "level": null,
-    "years": null,
-    "featured": false,
-    "order": 0,
-    "updatedAt": "2026-06-03T00:00:00.000Z"
-  },
-  {
-    "category": "Data / Infra",
-    "name": "MongoDB",
-    "level": 5,
-    "years": null,
+    "affinity": "reach_for",
     "featured": true,
     "order": 1,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Data / Infra",
-    "name": "Redis",
+    "category": "Backend",
+    "name": "Python",
     "level": null,
     "years": null,
+    "affinity": "reach_for",
     "featured": false,
     "order": 2,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Data / Infra",
-    "name": "AWS RDS",
+    "category": "Backend",
+    "name": "Node.js",
     "level": null,
     "years": null,
+    "affinity": "reach_for",
     "featured": false,
     "order": 3,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Data / Infra",
+    "category": "Backend",
+    "name": "JUnit",
+    "level": null,
+    "years": null,
+    "affinity": "comfortable",
+    "featured": false,
+    "order": 4,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Frontend",
+    "name": "React",
+    "level": 5,
+    "years": null,
+    "affinity": "reach_for",
+    "featured": true,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Frontend",
+    "name": "Redux",
+    "level": null,
+    "years": null,
+    "affinity": "reach_for",
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Frontend",
+    "name": "TypeScript",
+    "level": null,
+    "years": null,
+    "affinity": null,
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Frontend",
+    "name": "HTML",
+    "level": null,
+    "years": null,
+    "affinity": null,
+    "featured": false,
+    "order": 3,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Frontend",
+    "name": "CSS",
+    "level": null,
+    "years": null,
+    "affinity": null,
+    "featured": false,
+    "order": 4,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data & cloud",
     "name": "AWS",
     "level": null,
     "years": null,
+    "affinity": "comfortable",
+    "featured": true,
+    "order": 0,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data & cloud",
+    "name": "Textract",
+    "level": null,
+    "years": null,
+    "affinity": "comfortable",
+    "featured": false,
+    "order": 1,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data & cloud",
+    "name": "RDS",
+    "level": null,
+    "years": null,
+    "affinity": "comfortable",
+    "featured": false,
+    "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data & cloud",
+    "name": "MySQL",
+    "level": null,
+    "years": null,
+    "affinity": "comfortable",
+    "featured": false,
+    "order": 3,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Data & cloud",
+    "name": "MongoDB",
+    "level": 5,
+    "years": null,
+    "affinity": "comfortable",
     "featured": true,
     "order": 4,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Data / Infra",
-    "name": "AWS Textract",
+    "category": "Data & cloud",
+    "name": "Redis",
     "level": null,
     "years": null,
+    "affinity": "comfortable",
     "featured": false,
     "order": 5,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "DB tooling",
+    "category": "Data & cloud",
     "name": "Flyway",
     "level": null,
     "years": null,
+    "affinity": "comfortable",
     "featured": false,
-    "order": 0,
+    "order": 6,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Testing / DevOps",
-    "name": "JUnit",
+    "category": "Practice",
+    "name": "Agile",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 0,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Testing / DevOps",
+    "category": "Practice",
     "name": "Git",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 1,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
-    "category": "Testing / DevOps",
-    "name": "Agile",
+    "category": "Practice",
+    "name": "Code review",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 2,
+    "updatedAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "category": "Practice",
+    "name": "Mentoring",
+    "level": null,
+    "years": null,
+    "affinity": null,
+    "featured": false,
+    "order": 3,
     "updatedAt": "2026-06-03T00:00:00.000Z"
   },
   {
@@ -175,6 +214,7 @@
     "name": "ESG data",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 0,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -184,6 +224,7 @@
     "name": "Certification registries",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 1,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -193,6 +234,7 @@
     "name": "Blockchain (STACS / MAS Greenprint)",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 2,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -202,6 +244,7 @@
     "name": "OCR / document pipelines",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 3,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -211,6 +254,7 @@
     "name": "Sprint planning",
     "level": null,
     "years": null,
+    "affinity": "working_on",
     "featured": true,
     "order": 0,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -220,6 +264,7 @@
     "name": "Story-point estimation",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 1,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -229,6 +274,7 @@
     "name": "AAR facilitation",
     "level": null,
     "years": null,
+    "affinity": "working_on",
     "featured": false,
     "order": 2,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -238,6 +284,7 @@
     "name": "Remote team management",
     "level": null,
     "years": null,
+    "affinity": "working_on",
     "featured": false,
     "order": 3,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -247,6 +294,7 @@
     "name": "1:1s & mentorship",
     "level": null,
     "years": null,
+    "affinity": null,
     "featured": false,
     "order": 4,
     "updatedAt": "2026-06-03T00:00:00.000Z"
@@ -256,6 +304,7 @@
     "name": "Technical interviewing",
     "level": null,
     "years": null,
+    "affinity": "working_on",
     "featured": false,
     "order": 5,
     "updatedAt": "2026-06-03T00:00:00.000Z"

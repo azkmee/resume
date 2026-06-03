@@ -6,6 +6,10 @@
 >
 > Source material for the resume side lives in [`../accomplishments-log.md`](../accomplishments-log.md)
 > (STAR-format wins) and is migrated into the `accomplishments` collection.
+>
+> The **collection separation follows the site's information architecture**, taken from the
+> Claude Design handoff (`Resume Website-handoff.zip` on `main`): a terminal/CRT-style portfolio
+> with pages **Home · Work · Projects · Systems · About**. See §2a for the page → collection map.
 
 ---
 
@@ -28,35 +32,71 @@
 
 ## 2. Collections at a glance
 
-| Collection      | Cardinality        | Purpose |
-|-----------------|--------------------|---------|
-| `profile`       | singleton          | You: name, headline, summary, contacts, socials, current role |
-| `experiences`   | ~5–15              | Jobs / roles (the `## Role:` sections in the log) |
-| `accomplishments` | dozens+          | STAR wins, tags, metrics, resume-bullet drafts — references an experience |
-| `projects`      | ~10–50             | Portfolio projects with tech stack, links, gallery |
-| `skills`        | ~30–80             | Skill inventory, grouped by category, with proficiency |
-| `education`     | ~2–10              | Degrees & certificates |
-| `blog_posts`    | growing            | Articles with a **block-based body** (text / image / diagram / html / code) |
-| `media`         | growing            | Asset registry: images, diagrams, files — storage-abstracted |
-| `pages`         | ~5–20              | Flexible block-based content for arbitrary sections (about, now, uses, contact) |
-| `testimonials`  | ~5–30              | Recommendations / quotes from colleagues |
+**Active (design-backed)** — every collection maps to something on the live site:
+
+| Collection       | Card.        | Drives | Purpose |
+|------------------|--------------|--------|---------|
+| `profile`        | singleton    | all    | Identity, snapshot, bio, contacts, status pill |
+| `now`            | singleton    | Home/About | The `/now` panel — Building / Reading / Learning / … |
+| `site_settings`  | singleton    | all    | Nav, socials, CV, status, colophon, theme tweaks |
+| `experiences`    | ~5–15        | Work   | Roles / career timeline (the `## Role:` sections) |
+| `education`      | ~2–10        | Work   | Degrees & certs (rendered into the same timeline) |
+| `skills`         | ~30–80       | Work/About | The "stack", grouped Backend / Frontend / Data & cloud / Practice |
+| `accomplishments`| dozens+      | *(private)* | STAR wins — the **raw source** feeding case studies, feed & timeline bullets |
+| `case_studies`   | ~4–20        | Work   | Flagship **work** (CS-xx): pitch, stack, results, status |
+| `projects`       | ~6–50        | Projects | **Side** projects (P-xx): pitch, stack, link, status, lesson |
+| `teardowns`      | growing      | Systems | Systems analyses: block body + Observe→Decompose→Critique |
+| `feed`           | growing      | Home   | "Recently" broadcast: dated one-liners with a coloured tag |
+| `media`          | growing      | all    | Asset registry — storage-abstracted (R2 / S3 / GridFS / inline) |
+| `pages`          | ~5–20        | any    | Block-based content for arbitrary sections (About long-form, Method, …) |
+
+**Optional / future** — kept available (same envelope) but not part of the current design:
+
+| Collection      | Purpose |
+|-----------------|---------|
+| `blog_posts`    | General long-form writing — same block body as `teardowns`, for non-teardown posts |
+| `testimonials`  | Recommendations / quotes from colleagues |
 
 **Why these splits?**
 
-- `accomplishments` is its own collection (not embedded in `experiences`) because there are
-  many of them, they're queried/filtered independently (by tag, by date), and Claude appends
-  to them continuously. Embedding would mean rewriting a large role document on every new win.
-- `media` is centralized so one image can be reused across posts/projects, and so a storage
-  migration (e.g. GridFS → R2) touches one collection, not every document that shows a picture.
-- `pages` uses the **same block model as `blog_posts`**, so "other things I want to show on the
-  site" don't each need a bespoke schema — they're just blocks.
+- **`case_studies` ≠ `projects`.** The design gives them separate pages and framing —
+  flagship *professional* work (results, metrics, "Shipped") vs. *side* projects (a repo link
+  and a one-line "lesson"). Different shapes, different queries → separate collections.
+- **`accomplishments` is the private backstage.** It's not a page; it's the STAR truth that
+  `case_studies`, `feed` items, and experience bullets are **derived from** (via `derivedFrom`).
+  Keeping it separate means the polished public copy and the raw record evolve independently.
+- **`teardowns` owns the rich block body** (text / image / diagram / html / code). `blog_posts`
+  stays as an optional sibling using the *same* body model for general writing.
+- **`feed` is a microblog**, not an article — tiny, dated, high-churn, queried by recency.
+- `accomplishments` isn't embedded in `experiences` (many entries, filtered independently,
+  appended continuously). `media` is centralized so one image is reusable and a storage
+  migration touches one collection. Singletons (`now`, `site_settings`) isolate fast-changing
+  site chrome from content.
+
+---
+
+## 2a. Design alignment (page → collection)
+
+| Design page | Sections in the mockup | Collections |
+|---|---|---|
+| **Home** (`index.html`) | Snapshot · "What I'm doing" · **Recently** feed · directory cards | `profile`, `now`, `feed` |
+| **Work** (`work.html`) | Snapshot · Daily-driver **stack** · Career **timeline** · **Case studies** | `experiences`, `education`, `skills`, `case_studies` |
+| **Projects** (`projects.html`) | Side-project cards · filter (shipped/wip/abandoned/experiment) · "Lesson" | `projects` |
+| **Systems** (`systems.html`) | Method · **Teardowns** (Observe→Decompose→Critique) · suggested-target backlog | `teardowns` (backlog = `status: "idea"`) |
+| **About** (`about.html`) | Long-form bio · `/now` · full stack rundown · Contact · Colophon | `profile`, `now`, `skills`, `pages`, `site_settings` |
+| *(all pages)* | Nav, footer status bar, theme "Tweaks", clock/uptime | `site_settings` |
+
+Status & visibility flags carry the design's lifecycle: a teardown's *"draft — awaiting publish"*
+is `status:"draft"`; a *"suggested target"* stub is `status:"idea"`; empty project/case-study
+*slots* simply don't exist as documents yet.
 
 ---
 
 ## 3. The common envelope
 
-Every **content** document (everything except `profile` and `media`) shares this envelope.
-Collection-specific fields are added on top.
+Every **content** document shares this envelope (singletons `profile`, `now`, `site_settings`
+and the timestamp-only `media`/`skills` are the exceptions). Collection-specific fields are
+added on top.
 
 ```jsonc
 {
@@ -185,27 +225,53 @@ The heart of the migration from `accomplishments-log.md`. One document per STAR 
 }
 ```
 
-### 4.4 `projects`
+### 4.4 `projects` — *side* projects (Projects page)
+
+Matches the design's P-xx cards: name, pitch, stack, link, **status filter**, and a one-line
+**lesson**.
 
 ```jsonc
 {
   "_id": "ObjectId",
-  "slug": "esg-question-customisation-module",
-  "name": "ESG Question-Customisation Module",
-  "tagline": "Per-asset + per-group question scoping for ESG data entry",
-  "description": "…markdown…",
-  "role": "Architect & lead developer",
-  "period": { "start": "2025-01", "end": "2025-09" },
-  "projectStatus": "shipped",         // wip | shipped | archived | maintained
-  "techStack": ["Java", "Spring Boot", "MySQL", "React"],
-  "highlights": ["Replaced a fixed org-wide question set with per-asset curation", "…"],
-  "links": [
-    { "type": "case_study", "label": "Write-up", "url": "https://…" },
-    { "type": "repo",       "label": "GitHub",   "url": "https://…" }
-  ],
+  "slug": "example-project",
+  "code": "P-04",                     // display id
+  "name": "example_project",
+  "pitch": "One line: what it does & why",
+  "lesson": "Debouncing intent ≠ debouncing input",   // the takeaway
+  "period": { "start": null, "end": "2025-08" },
+  "projectStatus": "shipped",         // shipped | wip | abandoned | experiment | maintained | archived
+  "techStack": ["TypeScript", "Node"],
+  "links": [{ "type": "repo", "label": "GitHub", "url": "https://github.com/you/proj" }],
   "coverMediaId": "ObjectId|null",
   "gallery": ["ObjectId"],            // -> media._id[]
-  "metrics": [{ "label": "question-count reduction", "value": null, "unit": "%" }],
+  "metrics": [{ "label": "…", "value": null, "unit": "%" }],
+  // + common envelope
+}
+```
+
+### 4.4b `case_studies` — flagship *work* (Work page)
+
+The CS-xx cards. Same spirit as a project but for professional work, with headline **results**
+and a link back to the role and the `accomplishments` it was distilled from.
+
+```jsonc
+{
+  "_id": "ObjectId",
+  "slug": "textract-backed-certificate-intake",
+  "code": "CS-01",
+  "title": "Textract-backed certificate intake",
+  "pitch": "From \"humans squint at PDFs\" to an extract-&-validate pipeline…",
+  "period": { "start": "2024", "end": "2026" },
+  "projectStatus": "shipped",
+  "stack": ["AWS Textract", "Spring Boot", "React"],
+  "result": [                          // headline outcomes shown on the card
+    { "label": "precision", "value": 99.4, "unit": "%" },
+    { "label": "throughput", "value": "3x" }
+  ],
+  "experienceSlug": "software-engineer-esgpedia",   // -> experiences.slug
+  "derivedFrom": ["~2023-one-week-mvp-for-in-house-ocr"],  // -> accomplishments.slug[]
+  "body": { "format": "blocks", "blocks": [/* optional expanded write-up */] },
+  "coverMediaId": "ObjectId|null",
   // + common envelope
 }
 ```
@@ -217,15 +283,20 @@ One document per skill (queryable, sortable). Group at render time with a simple
 ```jsonc
 {
   "_id": "ObjectId",
-  "category": "Server-side / Frameworks", // Languages | Client-side | Server-side/Frameworks | Data/Infra | DB tooling | Testing/DevOps | Domain | Leadership/Process
+  "category": "Backend",       // Backend | Frontend | Data & cloud | Practice | Domain | Leadership / Process
   "name": "Spring Boot",
   "level": 5,                  // 1–5 (or null)
   "years": 5,                  // optional
+  "affinity": "reach_for",     // reach_for | comfortable | working_on | null  (About-page framing)
   "featured": true,
   "order": 0,
   "updatedAt": "ISODate"
 }
 ```
+
+> Categories mirror the design's "Daily-driver stack" groups (Backend / Frontend / Data & cloud /
+> Practice), plus `Domain` and `Leadership / Process` for resume completeness. `affinity` powers
+> the About page's "I reach for / Comfortable with / Working on" columns.
 
 > Render-time grouping:
 > ```js
@@ -373,6 +444,78 @@ Arbitrary site sections, reusing the blog block model.
 }
 ```
 
+### 4.11 `teardowns` — systems analyses (Systems page)
+
+Long-form content. Carries the full **block body** (the rich text / image / diagram / html / code
+model from §4.7) *plus* the design's `Observe → Decompose → Critique` frame. Backlog items
+("suggested targets") are just documents with `status: "idea"`.
+
+```jsonc
+{
+  "_id": "ObjectId",
+  "slug": "linear-command-palette",
+  "number": "01",
+  "title": "Linear's command palette — how does it feel that fast?",
+  "target": "Linear command palette (k-bar)",
+  "excerpt": "The perceptual tricks behind the k-bar…",
+  "analysis": {
+    "observe": "Use it for a week; note micro-frictions…",
+    "decompose": "Pre-cached indexes, optimistic UI, layout stability…",
+    "critique": "What did they choose to be good at? What would I change?"
+  },
+  "body": { "format": "blocks", "blocks": [/* §4.7 block types */] },
+  "tags": ["ui", "performance", "interaction"],
+  "status": "draft",                 // idea | draft | in_review | published | archived
+  // + common envelope
+}
+```
+
+### 4.12 `feed` — the "Recently" broadcast (Home)
+
+Tiny, dated, high-churn status updates. The `kind` drives the coloured tag chip.
+
+```jsonc
+{
+  "_id": "ObjectId",
+  "slug": "2026-05-22-stepped-into-engineering-lead",
+  "date": "2026-05-22",
+  "kind": "promotion",               // promotion | system | build | ship | talk | read | other
+  "label": "Promotion",              // optional override of the chip text
+  "body": "Stepped into the <b>Software Engineering Lead</b> role at ESGpedia.",
+  "derivedFrom": ["2026-04-stepped-into-software-engineering-lead-role"],  // accomplishments/case_studies/teardowns slug[]
+  "pinned": true,
+  // + common envelope
+}
+```
+
+### 4.13 `now` (singleton) & `site_settings` (singleton)
+
+```jsonc
+// _id: "now" — the /now panel (Home + About)
+{
+  "_id": "now",
+  "asOf": "2026-05",
+  "entries": [
+    { "label": "Building", "value": "finding my feet as eng lead…", "accent": "peach" },
+    { "label": "Reading",  "value": "Designing Data-Intensive Applications (again)" }
+  ],
+  "updatedAt": "ISODate"
+}
+
+// _id: "site_settings" — global chrome
+{
+  "_id": "site_settings",
+  "siteTitle": "portfolio",
+  "nav": [{ "label": "Home", "href": "/", "order": 0 }, /* … */],
+  "socials": [{ "platform": "github", "url": "https://github.com/azkmee", "handle": "azkmee" }],
+  "cv": { "mediaId": "ObjectId|null", "url": null },
+  "status": { "available": true, "label": "Available for interesting problems" },
+  "colophon": { "text": "Built with HTML, CSS, and a little warmth.", "fonts": ["DM Sans", "…"] },
+  "theme": { "accent": "peach", "headlineWidth": "normal", "density": "comfortable", "shadows": true },
+  "updatedAt": "ISODate"
+}
+```
+
 ---
 
 ## 5. Indexes
@@ -434,23 +577,42 @@ production-facing.
 docs/nosql-schema.md            ← this plan
 db/
   README.md                     ← quickstart: apply validators, seed, MCP setup
+  package.json                  ← mongodb driver dep + npm scripts (setup/migrate/seed)
   indexes.json                  ← index definitions (applied by setup script)
-  schema/*.schema.json          ← one $jsonSchema validator per collection
+  schema/*.schema.json          ← one $jsonSchema validator per collection (15)
   seed/*.seed.json              ← example + migrated documents (ready to insert via MCP)
   scripts/
-    setup.mongosh.js            ← creates every collection w/ validator + indexes (run in mongosh)
-    migrate-accomplishments.mjs ← parses accomplishments-log.md -> seed/accomplishments.seed.json + experiences.seed.json
+    setup.mjs                   ← create every collection w/ validator + indexes (idempotent)
+    migrate-accomplishments.mjs ← accomplishments-log.md -> experiences/accomplishments seed
+    seed.mjs                    ← idempotent upsert loader (date coercion, slug/_id keys)
 ```
 
 ---
 
 ## 8. Suggested rollout
 
-1. Run `setup.mongosh.js` against a fresh database → collections + validators + indexes exist.
-2. Run `migrate-accomplishments.mjs` → regenerates the experiences/accomplishments seed from the log.
-3. Insert seed files via the Mongo MCP server (or `mongoimport`) → real data, all as `needs_review`.
-4. Review & publish a first slice (profile, experiences, a couple of accomplishments).
+1. `cd db && npm install` then `npm run setup` → collections + validators + indexes exist.
+2. `npm run migrate` → regenerates the experiences/accomplishments seed from the log.
+3. `npm run seed` (or via the Mongo MCP server) → loads all seed data, mostly `needs_review`/`draft`.
+4. Review & publish a first slice (profile, now, site_settings, experiences, a few feed items).
 5. Point the website at `{ status: "published", visibility: "public" }` queries.
-6. From then on: capture wins in `accomplishments-log.md` as today **or** have Claude write straight
-   to the `accomplishments` collection as drafts — same review-then-publish loop either way.
-```
+6. From then on: capture wins in `accomplishments-log.md`, then have Claude distill them into
+   `case_studies` / `feed` / timeline bullets as drafts — same review-then-publish loop.
+
+---
+
+## 9. Adding a new collection later
+
+The scaffold is built so new content types slot in without touching the old ones:
+
+1. **Add the validator** — `db/schema/<name>.schema.json` (start from an existing one; keep the
+   common envelope: `slug`, `status`, `visibility`, `provenance`, timestamps, `version`).
+2. **Add indexes** — a `"<name>": [ … ]` entry in `db/indexes.json` (unique `slug` at minimum).
+3. **Register the upsert key** — add `<name>: ["slug"]` to `KEYS` in `db/scripts/seed.mjs`
+   (and to `NO_ENVELOPE` if it's a singleton / timestamp-only collection).
+4. **Seed it** — drop a `db/seed/<name>.seed.json`.
+5. Re-run `npm run setup && npm run seed`. `setup.mjs` auto-discovers any `schema/*.schema.json`,
+   so no code change is needed there.
+
+Good candidates already anticipated: `blog_posts` (general writing), `testimonials`,
+plus future ideas like `talks`, `bookmarks`, `uses`, `changelog`.

@@ -1,0 +1,75 @@
+{
+  "bsonType": "object",
+  "title": "site_settings",
+  "description": "Singleton: global site config — nav, socials, CV, status, colophon, theme tweaks. _id is the literal 'site_settings'.",
+  "required": ["_id", "updatedAt"],
+  "properties": {
+    "_id": { "enum": ["site_settings"] },
+    "siteTitle": { "bsonType": ["string", "null"] },
+    "nav": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "object",
+        "required": ["label", "href"],
+        "properties": {
+          "label": { "bsonType": "string" },
+          "href": { "bsonType": "string" },
+          "order": { "bsonType": ["int", "long", "double"] }
+        }
+      }
+    },
+    "socials": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "object",
+        "required": ["platform", "url"],
+        "properties": {
+          "platform": { "bsonType": "string", "description": "email | github | linkedin | read.cv | ..." },
+          "url": { "bsonType": "string" },
+          "handle": { "bsonType": ["string", "null"] }
+        }
+      }
+    },
+    "cv": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "mediaId": { "bsonType": ["objectId", "null"] },
+        "url": { "bsonType": ["string", "null"] }
+      }
+    },
+    "status": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "available": { "bsonType": "bool" },
+        "label": { "bsonType": ["string", "null"] }
+      }
+    },
+    "location": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "city": { "bsonType": "string" },
+        "lat": { "bsonType": ["double", "null"] },
+        "lon": { "bsonType": ["double", "null"] },
+        "timezone": { "bsonType": ["string", "null"] }
+      }
+    },
+    "colophon": {
+      "bsonType": ["object", "null"],
+      "properties": {
+        "text": { "bsonType": ["string", "null"] },
+        "fonts": { "bsonType": "array", "items": { "bsonType": "string" } }
+      }
+    },
+    "theme": {
+      "bsonType": ["object", "null"],
+      "description": "Default 'Tweaks' (themes.html): accent, headline width, density, shadows.",
+      "properties": {
+        "accent": { "bsonType": ["string", "null"] },
+        "headlineWidth": { "bsonType": ["string", "null"] },
+        "density": { "bsonType": ["string", "null"] },
+        "shadows": { "bsonType": ["bool", "null"] }
+      }
+    },
+    "updatedAt": { "bsonType": "date" }
+  }
+}

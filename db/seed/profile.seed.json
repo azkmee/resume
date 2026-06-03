@@ -4,7 +4,9 @@
   "headline": "Software Engineering Lead",
   "pronouns": null,
   "location": { "city": "Singapore", "country": "SG", "timezone": "Asia/Singapore" },
-  "summary": "Software Engineering Lead at ESGpedia building ESG data & certification registry products on a Java/Spring Boot + React stack. Promoted from Senior SWE; now manage 2 remote backend engineers and run sprint AARs across a 7-engineer backend group.",
+  "summary": "Software Engineering Lead at ESGpedia in Singapore. I build ESG data & certification systems by day, take other systems apart by night.",
+  "bio": "By trade I'm a generalist engineer — I work across the stack and prefer it that way. Backend feels like architecture; frontend feels like craft; data plumbing feels like puzzles. I'm happiest when I can move between all three.\n\nOff the clock I read about systems: how teams build them, how products earn their feel, how schemas evolve when nobody's watching. The /systems section is where I write that down.\n\nI'm always open to a coffee about engineering culture, ESG tech, or careers in Singapore.",
+  "status": { "available": true, "label": "Available for interesting problems" },
   "avatarMediaId": null,
   "contacts": { "email": "azmi_aang@hotmail.com", "phone": null },
   "socials": [

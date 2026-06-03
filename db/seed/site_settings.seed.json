@@ -1,0 +1,26 @@
+{
+  "_id": "site_settings",
+  "siteTitle": "portfolio",
+  "nav": [
+    { "label": "Home", "href": "/", "order": 0 },
+    { "label": "Work", "href": "/work", "order": 1 },
+    { "label": "Projects", "href": "/projects", "order": 2 },
+    { "label": "Systems", "href": "/systems", "order": 3 },
+    { "label": "About", "href": "/about", "order": 4 }
+  ],
+  "socials": [
+    { "platform": "email", "url": "mailto:azmi_aang@hotmail.com", "handle": "azmi_aang@hotmail.com" },
+    { "platform": "github", "url": "https://github.com/azkmee", "handle": "azkmee" },
+    { "platform": "linkedin", "url": null, "handle": null },
+    { "platform": "read.cv", "url": null, "handle": null }
+  ],
+  "cv": { "mediaId": null, "url": null },
+  "status": { "available": true, "label": "Available for interesting problems" },
+  "location": { "city": "Singapore", "lat": 1.3521, "lon": 103.8198, "timezone": "Asia/Singapore" },
+  "colophon": {
+    "text": "Built with HTML, CSS, and a little warmth.",
+    "fonts": ["Bricolage Grotesque", "DM Sans", "Instrument Serif", "JetBrains Mono"]
+  },
+  "theme": { "accent": "peach", "headlineWidth": "normal", "density": "comfortable", "shadows": true },
+  "updatedAt": "2026-06-03T00:00:00.000Z"
+}
