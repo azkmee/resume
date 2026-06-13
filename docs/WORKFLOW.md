@@ -34,12 +34,23 @@ never hand-edit JSON, and the site + resume engine never parse prose.
 
 ## The three consumers
 
-### 1. Showcase site (decided: extend the CRT site)
+### 1. Showcase site (decided: extend the CRT site) — LIVE
 
-The existing Claude-designed CRT/retro site (`site/`) currently hardcodes each role
-in `work.html`. Target state: the site fetches `data/portfolio.json` and renders
-roles + achievements (`showcase: true`) from data, so updating a win in one place
-updates the public page. Deploy via GitHub Pages.
+The CRT/retro site (`site/`) is now **data-driven**. `site/work.html` fetches
+`data/portfolio.json` (via `site/portfolio.js`) and renders the career timeline from
+`roles` and the case-studies grid from achievements flagged `showcase: true`. Update a
+win in the JSON → the page updates. No hardcoded (or fabricated) content.
+
+**Run locally** — the browser must fetch the JSON over HTTP, so serve it:
+
+```
+python3 -m http.server 8000      # from the repo root
+# open http://localhost:8000/site/work.html
+```
+
+**Deploy** — `.github/workflows/pages.yml` publishes `site/` (with `portfolio.json`
+copied alongside) to GitHub Pages on every push to `main`. One-time setup: repo
+**Settings → Pages → Source: GitHub Actions**. After that it auto-deploys.
 
 ### 2. AI resume engine
 
@@ -69,17 +80,45 @@ submit is opt-in per known-good portal.
 
 Every run appends a row to the cloud spreadsheet (see `tracker/README.md`).
 
+## Adding to your achievements (the capture workflow)
+
+The whole system is only as good as what flows into it. Keep capture cheap so you
+actually do it. Three entry points, in order of how often you'll use them:
+
+1. **Quick capture (most common).** The moment something happens — a shipped feature,
+   a saved fire, a mentoring win, positive feedback — drop a rough entry into
+   `accomplishments-log.md` under the right role. Don't polish. Even a one-liner with
+   the rough numbers beats a perfect entry you write three months late. Best triggers:
+   *sprint close / AAR, 1:1s, demos, incidents, any praise you receive.*
+
+2. **Distill (periodic — e.g. monthly, or before a job hunt).** A Claude Code session
+   reads new prose in the log and updates `data/portfolio.json`: writes the STAR block,
+   tags, skills, metrics, and a polished `resume_bullet`, and sets `showcase`. It also
+   **flags gaps** — entries that say "quantify later" or have unverified dates — so you
+   know exactly what to chase. Updates `meta.last_distilled`. This is the only thing
+   that edits the JSON; you never hand-edit it.
+
+3. **Enrich (when you have a number).** When you finally get a metric (adoption %,
+   latency, headcount, $ saved), add it to the log entry and re-distill. Quantified
+   results are what the resume engine ranks highest.
+
+**What makes a strong entry** (so capture is useful, not just frequent):
+- Use *"I"* and be specific about what *you* did vs. the team.
+- Chase a number for the Result — `metrics worth chasing` are listed at the top of the log.
+- Tag it (`backend`, `leadership`, `ai`, `architecture`, …) so the resume engine can
+  match it to a job description later.
+- Mark honest status: in-progress, stale, or superseded work still counts — say so.
+
 ## Regenerating the structured layer
 
-When you add wins to `accomplishments-log.md`, run the distill step (a Claude Code
-session / skill): it reads the log, updates `data/portfolio.json`, and flags entries
-needing numbers or date verification. The JSON's `meta.last_distilled` tracks freshness.
+The "distill" step above is what keeps `portfolio.json` in sync with the log. The
+JSON's `meta.last_distilled` tracks freshness; if the log has newer entries, it's due.
 
 ## Roadmap
 
 - **Phase 1 — Foundation (done):** version-control the site, build `data/portfolio.json`,
   define tracker schema + engine playbook, write this doc.
-- **Phase 2 — Showcase:** make the CRT site data-driven from `portfolio.json`; deploy to GitHub Pages.
+- **Phase 2 — Showcase (done):** CRT site is data-driven from `portfolio.json`; GitHub Pages deploy workflow in place.
 - **Phase 3 — Resume engine:** JD-in → tailored CV + cover note out (a skill/prompt + HTML→PDF template).
 - **Phase 4 — Tracker:** stand up the live cloud spreadsheet; wire the engine to append rows.
 - **Phase 5 — Auto-apply:** browser agent, assisted-apply first, per-portal hardening.
