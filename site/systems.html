@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="04 Systems">
+
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="work.html">Work</a>
+      <a class="tab" href="projects.html">Projects</a>
+      <a class="tab active" href="systems.html">Systems</a>
+      <a class="tab" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <section class="hero" style="position: relative;">
+      <div class="deco circle-peach" style="right: 0; top: 40px; opacity: 0.5; width: 130px; height: 130px;"></div>
+      <div class="deco circle-sage" style="right: 110px; top: 100px; opacity: 0.55; width: 100px; height: 100px;"></div>
+      <span class="kicker">./teardown --target=$SYSTEM</span>
+      <h1>Systems<br><span class="swoop">analyses</span><span class="peach">.</span></h1>
+      <p class="sub">
+        I take systems apart to understand them. Products I admire, primitives I want to learn,
+        architectures I want to argue with. Each teardown asks three questions:
+        <span class="peach"><b>what is it?</b></span>
+        <span class="sage"><b>why does it feel right?</b></span>
+        <span class="clay"><b>what would I change?</b></span>
+      </p>
+    </section>
+
+    <!-- ============ METHOD ============ -->
+    <section class="panel" style="margin-top: 24px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Method</h3>
+        <span class="kicker">how I write these</span>
+      </div>
+      <div class="grid cols-3" style="gap: 26px;">
+        <div class="method peach">
+          <h4><span class="num">01</span>Observe</h4>
+          <p>Use the thing for a week. Note micro-frictions, surprises, moments of delight. No reading source yet.</p>
+        </div>
+        <div class="method sage">
+          <h4><span class="num">02</span>Decompose</h4>
+          <p>Sketch the system: surfaces, state, data flow, network calls, the latency budget. Look for the spine.</p>
+        </div>
+        <div class="method ink">
+          <h4><span class="num">03</span>Critique</h4>
+          <p>Pick the trade-offs apart. What did they choose to be good at? What would I do differently — and why?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEARDOWNS ============ -->
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin: 36px 0 16px;">
+      <h2 class="cond">Teardowns<span class="peach">.</span></h2>
+      <span class="kicker">1 draft · 3 awaiting</span>
+    </div>
+
+    <div id="teardown-list">
+
+      <a class="entry-row" href="#" onclick="return false;">
+        <div class="entry-meta">
+          <span class="entry-num">01</span>
+          <span class="entry-date">Draft · 2026-04</span>
+        </div>
+        <div>
+          <h3 class="entry-title">Linear's command palette — how does it feel that fast?</h3>
+          <p>A teardown of the perceptual tricks behind Linear's k-bar. Pre-cached search indexes, optimistic UI, the way they cheat on layout to keep things stable. <span class="muted">[ draft — awaiting publish ]</span></p>
+          <div>
+            <span class="chip">UI</span>
+            <span class="chip sage">Performance</span>
+            <span class="chip peach">Interaction</span>
+          </div>
+        </div>
+        <div class="entry-cta">Read →</div>
+      </a>
+
+      <a class="entry-row placeholder" href="#" onclick="return false;">
+        <div class="entry-meta">
+          <span class="entry-num">02</span>
+          <span class="entry-date">Awaiting</span>
+        </div>
+        <div>
+          <h3 class="entry-title">Teardown slot.</h3>
+          <p>Drop a target product or system. I'll structure the writeup as Observe → Decompose → Critique.</p>
+        </div>
+        <div class="entry-cta muted">Empty</div>
+      </a>
+
+      <a class="entry-row placeholder" href="#" onclick="return false;">
+        <div class="entry-meta">
+          <span class="entry-num">03</span>
+          <span class="entry-date">Awaiting</span>
+        </div>
+        <div>
+          <h3 class="entry-title">Teardown slot.</h3>
+          <p>Could be Figma's multiplayer, Notion's blocks, Stripe's idempotency keys, or your bank's worst flow.</p>
+        </div>
+        <div class="entry-cta muted">Empty</div>
+      </a>
+
+      <a class="entry-row placeholder" href="#" onclick="return false;">
+        <div class="entry-meta">
+          <span class="entry-num">04</span>
+          <span class="entry-date">Awaiting</span>
+        </div>
+        <div>
+          <h3 class="entry-title">Teardown slot.</h3>
+          <p>Or — pick an internal ESGpedia system to write up. Architecture posts are surprisingly fun to publish.</p>
+        </div>
+        <div class="entry-cta muted">Empty</div>
+      </a>
+
+    </div>
+
+    <!-- ============ SUGGESTIONS ============ -->
+    <section class="panel" style="margin-top: 32px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Suggested targets</h3>
+        <span class="kicker">backlog</span>
+      </div>
+      <p style="margin: 0 0 14px; color: var(--ink-faint); font-size: 13.5px;">A few systems that make for great writeups. Pick any and I'll stub a draft.</p>
+      <div class="grid cols-2" style="gap: 10px;">
+        <div class="sugg">
+          <span class="sugg-glyph">◆</span>
+          <div><b>Linear's command palette</b><span class="muted"> — pre-indexing, optimistic UI, latency tricks.</span></div>
+        </div>
+        <div class="sugg">
+          <span class="sugg-glyph">◆</span>
+          <div><b>Figma's multiplayer cursors</b><span class="muted"> — CRDT-ish state, interpolation, dropout handling.</span></div>
+        </div>
+        <div class="sugg">
+          <span class="sugg-glyph">◆</span>
+          <div><b>Stripe's idempotency keys</b><span class="muted"> — retries without footguns.</span></div>
+        </div>
+        <div class="sugg">
+          <span class="sugg-glyph">◆</span>
+          <div><b>Notion's block model</b><span class="muted"> — one primitive, many surfaces.</span></div>
+        </div>
+        <div class="sugg">
+          <span class="sugg-glyph">◆</span>
+          <div><b>Cloudflare Workers cold starts</b><span class="muted"> — V8 isolates &amp; the latency budget.</span></div>
+        </div>
+        <div class="sugg">
+          <span class="sugg-glyph">◆</span>
+          <div><b>SQL → schema-on-read pipelines</b><span class="muted"> — when Mongo earns its keep.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>systems.log</b></div>
+      <div class="seg">Teardowns <b>1</b> draft · <b>3</b> empty</div>
+      <div class="seg">Method <b>Observe → Decompose → Critique</b></div>
+      <div class="seg right">EOF — <b>/systems</b></div>
+    </div>
+
+  </main>
+  <script src="crt.js"></script>
+</body>
+</html>

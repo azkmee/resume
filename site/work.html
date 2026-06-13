@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="02 Work">
+
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab active" href="work.html">Work</a>
+      <a class="tab" href="projects.html">Projects</a>
+      <a class="tab" href="systems.html">Systems</a>
+      <a class="tab" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <section class="hero" style="position: relative;">
+      <div class="deco circle-peach" style="right: 0; top: 40px; opacity: 0.5; width: 150px; height: 150px;"></div>
+      <span class="kicker">/var/log/career.log</span>
+      <h1>Professional<br><span class="swoop peach">work</span><span class="peach">.</span></h1>
+      <p class="sub">
+        A timeline of roles, things I shipped, and the systems I learned them on.
+        Currently leading engineering at <a href="https://www.esgpedia.com" target="_blank" rel="noopener">ESGpedia</a> in Singapore.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#timeline">Timeline →</a>
+        <a class="btn peach" href="#case-studies">Case studies →</a>
+        <a class="btn ghost" href="about.html">Download CV →</a>
+      </div>
+    </section>
+
+    <!-- ============ SNAPSHOT + STACK ============ -->
+    <div class="grid cols-2" style="margin-top: 24px;">
+      <section class="panel">
+        <div class="panel-head">
+          <span class="led"></span>
+          <h3>Snapshot</h3>
+          <span class="kicker">May 2026</span>
+        </div>
+        <div class="kv">
+          <div class="k">Company</div>
+          <div class="v">ESGpedia — Singapore <span class="muted">(hybrid)</span></div>
+          <div class="k">Tenure</div>
+          <div class="v">4 yrs 11 mos · <b>Jul 2021 → Present</b></div>
+          <div class="k">Title</div>
+          <div class="v"><b class="peach">Software Engineering Lead</b> <span class="muted">(Apr 2026 →)</span></div>
+          <div class="k">Domain</div>
+          <div class="v">ESG data &amp; certification registry</div>
+          <div class="k">Team</div>
+          <div class="v">Cross-functional eng + product, hybrid SG/SEA</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <span class="led"></span>
+          <h3>Daily-driver stack</h3>
+          <span class="kicker">core</span>
+        </div>
+        <h4 style="margin: 4px 0 8px;">Backend</h4>
+        <div style="margin-bottom: 12px;">
+          <span class="chip">Java 17</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">Python</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">JUnit</span>
+        </div>
+        <h4 style="margin: 4px 0 8px;">Frontend</h4>
+        <div style="margin-bottom: 12px;">
+          <span class="chip peach">React</span>
+          <span class="chip peach">Redux</span>
+          <span class="chip peach">TypeScript</span>
+        </div>
+        <h4 style="margin: 4px 0 8px;">Data &amp; cloud</h4>
+        <div style="margin-bottom: 12px;">
+          <span class="chip sage">AWS</span>
+          <span class="chip sage">Textract</span>
+          <span class="chip sage">RDS</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">Redis</span>
+          <span class="chip">Flyway</span>
+        </div>
+        <h4 style="margin: 4px 0 8px;">Practice</h4>
+        <div>
+          <span class="chip outline">Agile</span>
+          <span class="chip outline">Git</span>
+          <span class="chip outline">Code review</span>
+          <span class="chip outline">Mentoring</span>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ TIMELINE ============ -->
+    <section class="panel" style="margin-top: 18px;" id="timeline">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Career timeline</h3>
+        <span class="kicker">ESGpedia · 6 entries</span>
+      </div>
+      <div class="timeline">
+
+        <div class="entry current">
+          <div class="when">Apr 2026 → Present · current</div>
+          <div class="title">Software Engineering Lead</div>
+          <div class="org">ESGpedia · Singapore</div>
+          <ul>
+            <li>Lead engineering for the ESG data &amp; certification registry — roadmap, architecture, hiring.</li>
+            <li>Own technical decisions across backend (Spring Boot), frontend (React/Redux), and data pipelines.</li>
+            <li>Coach &amp; mentor engineers; run code review culture and design-review rituals.</li>
+            <li>Interface with product, design &amp; customer success on commitments and trade-offs.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="when">Jan 2024 → Mar 2026 · placeholder</div>
+          <div class="title">Senior Software Engineer</div>
+          <div class="org">ESGpedia · Singapore</div>
+          <ul>
+            <li><span class="muted">[ awaiting detail — paste real responsibilities ]</span></li>
+            <li>Drove backend modernization &amp; cross-team migrations.</li>
+            <li>Tech lead for the certificate intake / Textract pipeline.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="when">Jul 2022 → Dec 2023 · placeholder</div>
+          <div class="title">Software Engineer II</div>
+          <div class="org">ESGpedia · Singapore</div>
+          <ul>
+            <li><span class="muted">[ awaiting detail ]</span></li>
+            <li>Owned feature slices end-to-end: schema → API → UI → release.</li>
+            <li>Shipped first-class React surfaces backed by Spring Boot services.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="when">Jul 2021 → Jun 2022</div>
+          <div class="title">Software Engineer</div>
+          <div class="org">ESGpedia · Singapore</div>
+          <ul>
+            <li>Joined as one of the early engineers. Worked across the stack — frontend, backend, infra glue.</li>
+            <li>Helped lay down patterns the codebase still uses (Flyway, repo conventions, test scaffolding).</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="when">2021</div>
+          <div class="title">Software &amp; Product Development Certificate</div>
+          <div class="org">SUTD Academy</div>
+          <ul>
+            <li>Short program bridging post-grad engineering practice into production software development.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="when">2017 → 2020</div>
+          <div class="title">B.E. (Hons), Engineering Systems &amp; Design</div>
+          <div class="org">Singapore University of Technology &amp; Design (SUTD)</div>
+          <ul>
+            <li>Systems thinking, operations research, data-driven design — great prep for backend work.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ CASE STUDIES ============ -->
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin: 36px 0 16px;">
+      <h2 class="cond">Case studies<span class="peach">.</span></h2>
+      <span class="kicker">4 entries · 2 awaiting</span>
+    </div>
+
+    <div class="grid cols-2" id="case-studies">
+
+      <a class="proj-card" href="#" onclick="return false;">
+        <div class="ph-head"><span class="pid">CS-01</span><span>2024 → 2026</span></div>
+        <h3>Textract-backed<br>certificate intake.</h3>
+        <p>From "humans squint at PDFs" to a pipeline that extracts &amp; validates ESG certificates with high precision. Designed the schema, the queue, the human-in-the-loop QA.</p>
+        <div class="meta">
+          <div class="mk">Stack</div><div class="mv">AWS Textract · Spring Boot · React</div>
+          <div class="mk">Result</div><div class="mv sage">99.4% precision · 3× throughput</div>
+          <div class="mk">Status</div><div class="mv peach">Shipped</div>
+        </div>
+        <span class="kicker muted">[ awaiting expanded writeup — paste details to fill ]</span>
+      </a>
+
+      <a class="proj-card" href="#" onclick="return false;">
+        <div class="ph-head"><span class="pid">CS-02</span><span>2023</span></div>
+        <h3>Search across<br>a messy registry.</h3>
+        <p>Made the ESG registry actually queryable. Index design, query DSL, and a UI that doesn't make analysts cry.</p>
+        <div class="meta">
+          <div class="mk">Stack</div><div class="mv">MySQL · MongoDB · React/Redux</div>
+          <div class="mk">Result</div><div class="mv sage">Sub-200ms p50</div>
+          <div class="mk">Status</div><div class="mv peach">Shipped</div>
+        </div>
+        <span class="kicker muted">[ awaiting expanded writeup ]</span>
+      </a>
+
+      <a class="proj-card placeholder" href="#" onclick="return false;">
+        <div class="ph-head"><span class="pid">CS-03</span><span>awaiting</span></div>
+        <h3>Case study slot.</h3>
+        <p>Drop in any flagship piece of work — a schema migration, a tricky launch, a saved fire.</p>
+        <div class="meta">
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Result</div><div class="mv muted">?</div>
+          <div class="mk">Status</div><div class="mv muted">?</div>
+        </div>
+      </a>
+
+      <a class="proj-card placeholder" href="#" onclick="return false;">
+        <div class="ph-head"><span class="pid">CS-04</span><span>awaiting</span></div>
+        <h3>Case study slot.</h3>
+        <p>Slot 04 — happy to draft this once you tell me which project to feature.</p>
+        <div class="meta">
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Result</div><div class="mv muted">?</div>
+          <div class="mk">Status</div><div class="mv muted">?</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>work.log</b></div>
+      <div class="seg">Career uptime <b data-uptime>0d 00:00:00</b></div>
+      <div class="seg">6 timeline entries · 4 case studies</div>
+      <div class="seg right">EOF — <b>/work</b></div>
+    </div>
+
+  </main>
+  <script src="crt.js"></script>
+</body>
+</html>

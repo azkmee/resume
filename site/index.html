@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="01 Home">
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab active" href="index.html">Home</a>
+      <a class="tab" href="work.html">Work</a>
+      <a class="tab" href="projects.html">Projects</a>
+      <a class="tab" href="systems.html">Systems</a>
+      <a class="tab" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" style="position: relative;">
+      <div class="deco circle-peach" style="right: -60px; top: 20px; opacity: 0.55;"></div>
+      <div class="deco circle-sage" style="right: 100px; top: 220px; opacity: 0.45; width: 90px; height: 90px;"></div>
+
+      <span class="pill"><span class="led"></span>Available for interesting problems</span>
+
+      <h1>
+        Hello, <span class="peach">I'm</span><br>
+        a <span class="swoop">software</span><br>
+        <span class="sage">engineer</span>.
+      </h1>
+
+      <p class="sub">
+        Software Engineering Lead at <a href="https://www.esgpedia.com" target="_blank" rel="noopener"><b>ESGpedia</b></a> in Singapore.
+        I build ESG data &amp; certification systems by day, take other systems apart by night.
+        <em>This is my logbook.</em>
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="work.html">Read the CV →</a>
+        <a class="btn peach" href="projects.html">Side projects →</a>
+        <a class="btn ghost" href="systems.html">Systems →</a>
+      </div>
+    </section>
+
+    <!-- ============ SNAPSHOT GRID ============ -->
+    <div class="grid cols-2" style="margin-top: 32px;">
+      <section class="panel">
+        <div class="panel-head">
+          <span class="led"></span>
+          <h3>Snapshot</h3>
+          <span class="kicker">May 2026</span>
+        </div>
+        <div class="kv">
+          <div class="k">Role</div>
+          <div class="v"><b>Software Engineering Lead</b></div>
+
+          <div class="k">Company</div>
+          <div class="v">ESGpedia · Singapore <span class="muted">(hybrid)</span></div>
+
+          <div class="k">Tenure</div>
+          <div class="v">4 yrs 11 mos · since Jul 2021</div>
+
+          <div class="k">Domain</div>
+          <div class="v">ESG data &amp; certification registry</div>
+
+          <div class="k">Stack</div>
+          <div class="v" style="padding-top: 2px;">
+            <span class="chip">Java/Spring</span>
+            <span class="chip peach">React</span>
+            <span class="chip sage">AWS</span>
+            <span class="chip">Python</span>
+            <span class="chip">Node</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">Mongo</span>
+            <span class="chip">Redis</span>
+          </div>
+
+          <div class="k">Education</div>
+          <div class="v">B.E. (Hons), Engineering Systems &amp; Design, SUTD '20</div>
+
+          <div class="k">Status</div>
+          <div class="v sage"><b>● Available for interesting problems</b></div>
+        </div>
+      </section>
+
+      <section class="panel" style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="panel-head">
+          <span class="led"></span>
+          <h3>What I'm doing</h3>
+          <span class="kicker">/now</span>
+        </div>
+        <div class="kv">
+          <div class="k">Building</div>
+          <div class="v">finding my feet as <span class="peach"><b>engineering lead</b></span> at ESGpedia</div>
+
+          <div class="k">Reading</div>
+          <div class="v"><em>Designing Data-Intensive Applications</em> <span class="muted">(again)</span></div>
+
+          <div class="k">Learning</div>
+          <div class="v">Sharper design reviews — fewer bikesheds, more decisions</div>
+
+          <div class="k">Writing</div>
+          <div class="v">A teardown of Linear's command palette</div>
+
+          <div class="k">City</div>
+          <div class="v">Singapore · <span data-clock>--:--</span> SGT</div>
+
+          <div class="k">Drinking</div>
+          <div class="v"><span class="clay">Kopi-O, two sugars</span></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ BROADCAST FEED ============ -->
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Recently</h3>
+        <span class="kicker">latest 6</span>
+      </div>
+      <ul class="feed">
+        <li class="feed-item">
+          <span class="ts">2026-05-22</span>
+          <span class="tag peach">Promotion</span>
+          <span class="body">Stepped into the <b>Software Engineering Lead</b> role at ESGpedia.</span>
+        </li>
+        <li class="feed-item">
+          <span class="ts">2026-04-10</span>
+          <span class="tag sage">System</span>
+          <span class="body">Drafting a teardown: <em>how Linear keeps the command palette feeling instant.</em></span>
+        </li>
+        <li class="feed-item">
+          <span class="ts">2026-03-02</span>
+          <span class="tag clay">Build</span>
+          <span class="body">A side project is brewing. <span class="muted">(awaiting details)</span></span>
+        </li>
+        <li class="feed-item">
+          <span class="ts">2026-01-18</span>
+          <span class="tag peach">Ship</span>
+          <span class="body">Released a Textract-backed certificate intake pipeline. <span class="muted">99.4% precision on first pass.</span></span>
+        </li>
+        <li class="feed-item">
+          <span class="ts">2025-11-04</span>
+          <span class="tag sage">Talk</span>
+          <span class="body">Internal talk: <em>"Schema migrations without tears"</em> — Flyway, blue/green, and humility.</span>
+        </li>
+        <li class="feed-item">
+          <span class="ts">2025-09-12</span>
+          <span class="tag clay">Read</span>
+          <span class="body">Re-reading <em>Designing Data-Intensive Applications.</em> Still feels like the curriculum.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ DIRECTORY CARDS ============ -->
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin: 40px 0 16px;">
+      <h2 class="cond">Browse the site<span class="peach">.</span></h2>
+      <span class="kicker">3 sections</span>
+    </div>
+
+    <div class="grid cols-3">
+      <a class="dir-card peach" href="work.html">
+        <div class="glyph"></div>
+        <div class="num">01 — /work</div>
+        <h3>Professional<br>work.</h3>
+        <p>Five years at ESGpedia. Roles, ships, and case studies worth telling.</p>
+        <span class="arr">Open the file →</span>
+      </a>
+
+      <a class="dir-card sage" href="projects.html">
+        <div class="glyph"></div>
+        <div class="num">02 — /projects</div>
+        <h3>Side<br>projects.</h3>
+        <p>Weekend builds — shipped, abandoned, in-progress. The honest backlog.</p>
+        <span class="arr">Browse the shelf →</span>
+      </a>
+
+      <a class="dir-card ink" href="systems.html">
+        <div class="glyph"></div>
+        <div class="num">03 — /systems</div>
+        <h3>Systems<br>analyses.</h3>
+        <p>Teardowns of products I admire. Observe, decompose, critique.</p>
+        <span class="arr">Read the field notes →</span>
+      </a>
+    </div>
+
+    <!-- ============ STATUS FOOTER ============ -->
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>Online</b></div>
+      <div class="seg">Career uptime <b data-uptime>0d 00:00:00</b></div>
+      <div class="seg">Built with HTML + warmth</div>
+      <div class="seg right">© <b>2026</b> · say hi</div>
+    </div>
+
+  </main>
+
+  <script src="crt.js"></script>
+</body>
+</html>

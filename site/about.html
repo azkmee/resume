@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="05 About">
+
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="work.html">Work</a>
+      <a class="tab" href="projects.html">Projects</a>
+      <a class="tab" href="systems.html">Systems</a>
+      <a class="tab active" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <section class="hero" style="position: relative;">
+      <div class="deco circle-peach" style="right: 30px; top: 60px; opacity: 0.55;"></div>
+      <div class="deco circle-sage" style="right: 170px; top: 30px; opacity: 0.5; width: 90px; height: 90px;"></div>
+      <span class="kicker">finger me@local</span>
+      <h1>Hi <span class="swoop">there</span><span class="peach">.</span></h1>
+      <p class="sub">
+        I'm a software engineer based in Singapore. I lead engineering at <b>ESGpedia</b>, where we build data &amp; certification systems for the ESG space. Before that I was at <b>SUTD</b>, studying Engineering Systems &amp; Design — which is a fancy way of saying <em>I like understanding why systems behave the way they do.</em>
+      </p>
+    </section>
+
+    <div class="grid cols-2" style="margin-top: 24px;">
+
+      <section class="panel">
+        <div class="panel-head">
+          <span class="led"></span>
+          <h3>About me</h3>
+          <span class="kicker">long form</span>
+        </div>
+        <p>
+          By trade I'm a generalist engineer — I work across the stack and prefer it that way. Backend feels like architecture; frontend feels like craft; data plumbing feels like puzzles. I'm happiest when I can move between all three.
+        </p>
+        <p>
+          Off the clock I read about systems: how teams build them, how products earn their feel, how schemas evolve when nobody's watching. The <a href="systems.html">/systems</a> section is where I write that down.
+        </p>
+        <p>
+          I'm always open to a coffee about engineering culture, ESG tech, or careers in Singapore.
+        </p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <span class="led"></span>
+          <h3>What I'm doing</h3>
+          <span class="kicker">/now · May 2026</span>
+        </div>
+        <div class="kv">
+          <div class="k">Building</div>
+          <div class="v"><span class="peach"><b>finding my feet</b></span> as eng lead at ESGpedia</div>
+          <div class="k">Reading</div>
+          <div class="v"><em>Designing Data-Intensive Applications</em> <span class="muted">(again)</span></div>
+          <div class="k">Learning</div>
+          <div class="v">Better facilitation — design reviews that don't bikeshed</div>
+          <div class="k">Writing</div>
+          <div class="v">A teardown of Linear's command palette</div>
+          <div class="k">City</div>
+          <div class="v">Singapore · 1°22′N · <span data-clock>--:--</span> SGT</div>
+          <div class="k">Drinking</div>
+          <div class="v clay"><b>Kopi-O, two sugars</b></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============ STACK BREAKDOWN ============ -->
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Full stack rundown</h3>
+        <span class="kicker">uname -a</span>
+      </div>
+      <div class="grid cols-3" style="gap: 26px;">
+        <div>
+          <h4>I reach for...</h4>
+          <ul class="plain-list">
+            <li>Java + Spring Boot for backends I trust</li>
+            <li>React + Redux when state has shape</li>
+            <li>Python when speed of thought matters</li>
+            <li>Node when JS is already the language</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Comfortable with...</h4>
+          <ul class="plain-list" style="--accent: var(--sage);">
+            <li>AWS — Textract, RDS, S3, the usual</li>
+            <li>MySQL · MongoDB · Redis</li>
+            <li>Flyway migrations done well</li>
+            <li>JUnit, design-by-contract testing</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Working on...</h4>
+          <ul class="plain-list" style="--accent: var(--clay);">
+            <li>Leading people, not just code</li>
+            <li>Sharper technical writing</li>
+            <li>Saying "I don't know" earlier</li>
+            <li>A more deliberate side-project cadence</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Say hi</h3>
+        <span class="kicker">contact</span>
+      </div>
+      <div class="kv" style="margin-bottom: 22px;">
+        <div class="k">Email</div>      <div class="v muted">[ your email here ]</div>
+        <div class="k">GitHub</div>     <div class="v muted">[ github.com/you ]</div>
+        <div class="k">LinkedIn</div>   <div class="v muted">[ linkedin.com/in/you ]</div>
+        <div class="k">read.cv</div>    <div class="v muted">[ read.cv/you ]</div>
+        <div class="k">Status</div>     <div class="v sage"><b>● Available for interesting problems</b></div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="mailto:you@example.com">Email me →</a>
+        <a class="btn peach" href="#" onclick="return false;">GitHub →</a>
+        <a class="btn ghost" href="#" onclick="return false;">LinkedIn →</a>
+        <a class="btn ghost" href="#" onclick="return false;">Download CV.pdf →</a>
+      </div>
+      <p class="muted" style="margin-top: 14px; font-size: 13px;">
+        [ paste your actual handles and I'll wire the buttons ]
+      </p>
+    </section>
+
+    <!-- ============ COLOPHON ============ -->
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>Colophon</h3>
+      </div>
+      <p style="margin: 0; font-size: 14px;">
+        Built with HTML, CSS, and a little warmth. Type set in
+        <b>Bricolage Grotesque</b>, <b>DM Sans</b>, and <em>Instrument Serif</em>;
+        meta in <span style="font-family: var(--mono); background: var(--bg-deep); padding: 1px 6px; border-radius: 6px;">JetBrains&nbsp;Mono</span>.
+        Toggle the <b>Tweaks</b> button to change the accent, headline width, density, or shadows.
+      </p>
+    </section>
+
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>about.log</b></div>
+      <div class="seg">Career uptime <b data-uptime>0d 00:00:00</b></div>
+      <div class="seg">Say hi — I read my email.</div>
+      <div class="seg right">EOF — <b>/about</b></div>
+    </div>
+
+  </main>
+  <script src="crt.js"></script>
+</body>
+</html>

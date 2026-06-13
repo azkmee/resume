@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="03 Projects">
+
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="work.html">Work</a>
+      <a class="tab active" href="projects.html">Projects</a>
+      <a class="tab" href="systems.html">Systems</a>
+      <a class="tab" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <section class="hero" style="position: relative;">
+      <div class="deco circle-sage" style="right: 30px; top: 80px; opacity: 0.55;"></div>
+      <div class="deco circle-peach" style="right: 140px; top: 30px; opacity: 0.45; width: 90px; height: 90px;"></div>
+      <span class="kicker">/usr/bin/weekend_brain</span>
+      <h1>Side<br><span class="swoop sage">projects</span><span class="peach">.</span></h1>
+      <p class="sub">
+        Things I build outside work hours &mdash; experiments, tools, half-finished riffs.
+        Most live on GitHub, some live only on my hard drive. <em>All are honest.</em>
+      </p>
+      <div class="filter-row" style="margin-top: 24px;">
+        <span class="kicker" style="padding-right: 6px;">Filter</span>
+        <button class="filter-chip on" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="shipped">Shipped</button>
+        <button class="filter-chip" data-filter="wip">WIP</button>
+        <button class="filter-chip" data-filter="abandoned">Abandoned</button>
+        <button class="filter-chip" data-filter="experiment">Experiment</button>
+      </div>
+    </section>
+
+    <!-- ============ CARD GRID ============ -->
+    <div class="grid cols-3" id="project-grid" style="margin-top: 24px;">
+
+      <a class="proj-card placeholder" data-status="all wip" href="#" onclick="return false;">
+        <div class="ph-head">
+          <span class="pid">P-01</span>
+          <span>empty slot</span>
+        </div>
+        <h3>project_01</h3>
+        <p>Drop in: project name, one-line pitch, what you learned, link to the repo or demo.</p>
+        <div class="meta">
+          <div class="mk">Name</div><div class="mv muted">?</div>
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Shipped</div><div class="mv muted">?</div>
+          <div class="mk">Link</div><div class="mv muted">?</div>
+          <div class="mk">Lesson</div><div class="mv muted">?</div>
+        </div>
+        <span class="chip">awaiting</span>
+      </a>
+
+      <a class="proj-card placeholder" data-status="all wip" href="#" onclick="return false;">
+        <div class="ph-head">
+          <span class="pid">P-02</span>
+          <span>empty slot</span>
+        </div>
+        <h3>project_02</h3>
+        <p>Same template — paste the next project's details and I'll style them in.</p>
+        <div class="meta">
+          <div class="mk">Name</div><div class="mv muted">?</div>
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Shipped</div><div class="mv muted">?</div>
+          <div class="mk">Link</div><div class="mv muted">?</div>
+          <div class="mk">Lesson</div><div class="mv muted">?</div>
+        </div>
+        <span class="chip">awaiting</span>
+      </a>
+
+      <a class="proj-card placeholder" data-status="all experiment" href="#" onclick="return false;">
+        <div class="ph-head">
+          <span class="pid">P-03</span>
+          <span>empty slot</span>
+        </div>
+        <h3>project_03</h3>
+        <p>Have a one-day experiment or hack? Slot 03 is sized for those.</p>
+        <div class="meta">
+          <div class="mk">Name</div><div class="mv muted">?</div>
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Shipped</div><div class="mv muted">?</div>
+          <div class="mk">Link</div><div class="mv muted">?</div>
+          <div class="mk">Lesson</div><div class="mv muted">?</div>
+        </div>
+        <span class="chip">awaiting</span>
+      </a>
+
+      <!-- Sample filled-in card -->
+      <a class="proj-card" data-status="all shipped" href="#" onclick="return false;">
+        <div class="ph-head">
+          <span class="pid">P-04</span>
+          <span>style preview</span>
+        </div>
+        <h3>example_project<span class="peach">.</span></h3>
+        <p>This is what a filled card will look like once you give me a project to slot in. Replace any text.</p>
+        <div class="meta">
+          <div class="mk">Name</div><div class="mv peach">example_project</div>
+          <div class="mk">Stack</div><div class="mv sage">TypeScript · Node</div>
+          <div class="mk">Shipped</div><div class="mv">2025-08</div>
+          <div class="mk">Link</div><div class="mv">github.com/you/proj</div>
+          <div class="mk">Lesson</div><div class="mv">Debouncing intent ≠ debouncing input</div>
+        </div>
+        <span class="chip peach">Shipped</span>
+        <span class="chip">Sample</span>
+      </a>
+
+      <a class="proj-card placeholder" data-status="all abandoned" href="#" onclick="return false;">
+        <div class="ph-head">
+          <span class="pid">P-05</span>
+          <span>empty slot</span>
+        </div>
+        <h3>project_05</h3>
+        <p>Abandoned projects belong here too — there's usually a good story in why you stopped.</p>
+        <div class="meta">
+          <div class="mk">Name</div><div class="mv muted">?</div>
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Shipped</div><div class="mv muted">?</div>
+          <div class="mk">Link</div><div class="mv muted">?</div>
+          <div class="mk">Lesson</div><div class="mv muted">?</div>
+        </div>
+        <span class="chip">awaiting</span>
+      </a>
+
+      <a class="proj-card placeholder" data-status="all experiment" href="#" onclick="return false;">
+        <div class="ph-head">
+          <span class="pid">P-06</span>
+          <span>empty slot</span>
+        </div>
+        <h3>project_06</h3>
+        <p>Want another slot? Say the word and I'll extend the grid.</p>
+        <div class="meta">
+          <div class="mk">Name</div><div class="mv muted">?</div>
+          <div class="mk">Stack</div><div class="mv muted">?</div>
+          <div class="mk">Shipped</div><div class="mv muted">?</div>
+          <div class="mk">Link</div><div class="mv muted">?</div>
+          <div class="mk">Lesson</div><div class="mv muted">?</div>
+        </div>
+        <span class="chip">awaiting</span>
+      </a>
+
+    </div>
+
+    <!-- ============ HOW TO ADD ============ -->
+    <section class="panel" style="margin-top: 32px;">
+      <div class="panel-head">
+        <span class="led"></span>
+        <h3>How to add a project</h3>
+        <span class="kicker">readme.md</span>
+      </div>
+      <p style="margin: 0 0 14px;">For each project, paste me:</p>
+      <ol style="font-family: var(--body); font-size: 14.5px; color: var(--ink-dim); padding-left: 20px; line-height: 1.7;">
+        <li><b>Name</b> — display name</li>
+        <li><b>Pitch</b> — one short line, what it does &amp; why</li>
+        <li><b>Stack</b> — what it's built on</li>
+        <li><b>Link</b> — repo or live URL (optional)</li>
+        <li><b>Status</b> — shipped · WIP · abandoned · experiment</li>
+        <li><b>Lesson</b> — one takeaway (optional, recommended)</li>
+      </ol>
+      <p style="margin-top: 12px; color: var(--ink-faint); font-size: 13px;">
+        I'll style each into a card matching the slots above.
+      </p>
+    </section>
+
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>projects.log</b></div>
+      <div class="seg">Slots <b>6</b></div>
+      <div class="seg">Filled <b>1</b> · Awaiting <b>5</b></div>
+      <div class="seg right">EOF — <b>/projects</b></div>
+    </div>
+
+  </main>
+  <script src="crt.js"></script>
+  <script>
+    document.querySelectorAll('.filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('#project-grid .proj-card').forEach(card => {
+          const s = card.dataset.status || '';
+          card.style.display = (f === 'all' || s.includes(f)) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
