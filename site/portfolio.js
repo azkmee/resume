@@ -8,6 +8,8 @@
   const CANDIDATES = ['data/portfolio.json', '../data/portfolio.json', '../portfolio.json'];
 
   async function loadPortfolio() {
+    // Offline/preview builds inject the data as a global so no server is needed.
+    if (window.__PORTFOLIO__) return window.__PORTFOLIO__;
     for (const url of CANDIDATES) {
       try {
         const res = await fetch(url, { cache: 'no-cache' });

@@ -48,6 +48,9 @@ python3 -m http.server 8000      # from the repo root
 # open http://localhost:8000/site/work.html
 ```
 
+**Offline preview** — `node tools/build-offline.mjs` writes a self-contained `dist/`
+(data baked into `portfolio.js`) you can open directly with `file://`, no server needed.
+
 **Deploy** — `.github/workflows/pages.yml` publishes `site/` (with `portfolio.json`
 copied alongside) to GitHub Pages on every push to `main`. One-time setup: repo
 **Settings → Pages → Source: GitHub Actions**. After that it auto-deploys.

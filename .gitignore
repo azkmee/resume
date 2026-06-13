@@ -12,3 +12,7 @@ Thumbs.db
 *.draft.md
 private/
 *.local.md
+
+# Build artifacts (offline site preview)
+dist/
+resume-site-preview.zip
