@@ -16,3 +16,6 @@ private/
 # Build artifacts (offline site preview)
 dist/
 resume-site-preview.zip
+
+# Generated resume files (may contain real contact details — keep out of the public repo)
+build/
