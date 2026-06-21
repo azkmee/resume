@@ -9,6 +9,7 @@ on:
     paths:
       - 'site/**'
       - 'data/portfolio.json'
+      - 'content/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -32,9 +33,10 @@ jobs:
 
       - name: Assemble publish directory
         run: |
-          mkdir -p _site/data
+          mkdir -p _site/data _site/content
           cp -r site/* _site/
           cp data/portfolio.json _site/data/portfolio.json
+          cp -r content/* _site/content/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

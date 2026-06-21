@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="Project" data-detail>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab active" href="projects.html">Projects</a>
+      <a class="tab" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <section class="hero" style="position: relative;" data-detail-head>
+      <h1>Loading…</h1>
+    </section>
+
+    <article class="panel prose" style="margin-top: 8px;" data-detail-body>
+      <p class="muted">Loading the write-up…</p>
+    </article>
+
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>project.log</b></div>
+      <div class="seg"><a href="projects.html">← All projects</a></div>
+      <div class="seg right">EOF</div>
+    </div>
+
+  </main>
+  <script src="markdown.js"></script>
+  <script src="portfolio.js"></script>
+  <script src="crt.js"></script>
+</body>
+</html>

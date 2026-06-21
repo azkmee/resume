@@ -367,9 +367,9 @@
             "tradeoff": "Two files per project to keep in sync"
           },
           {
-            "decision": "Pre-render markdown to HTML at build time",
-            "why": "Ship static HTML that works offline with no runtime markdown library",
-            "tradeoff": "Adds a build step"
+            "decision": "Render markdown in the browser with a tiny zero-dependency renderer",
+            "why": "No build toolchain or runtime markdown library to pull in; the offline build bakes the content so detail pages still work from file://",
+            "tradeoff": "Diagrams lazy-load mermaid from a CDN, falling back to source text when offline"
           }
         ]
       }

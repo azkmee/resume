@@ -1,16 +1,22 @@
 /* ============================================================
-   Renders the Work page from the single source of truth:
-   data/portfolio.json. Update a win there → the page updates.
-   Tries multiple paths so it works both locally (served from the
-   repo root) and on GitHub Pages (data copied next to the site).
+   Renders the showcase from the single source of truth:
+   data/portfolio.json.
+
+   - projects.html  → grid of type:project records (surface≠resume),
+                      filterable by work / personal.
+   - project.html   → one project's detail: structured header from the
+                      JSON + long-form narrative from its content_ref
+                      markdown (rendered by markdown.js).
+
+   Tries multiple paths so it works locally (served from the repo root)
+   and on GitHub Pages (data + content copied next to the site).
    ============================================================ */
 (function () {
-  const CANDIDATES = ['data/portfolio.json', '../data/portfolio.json', '../portfolio.json'];
+  const DATA_CANDIDATES = ['data/portfolio.json', '../data/portfolio.json', '../portfolio.json'];
 
   async function loadPortfolio() {
-    // Offline/preview builds inject the data as a global so no server is needed.
     if (window.__PORTFOLIO__) return window.__PORTFOLIO__;
-    for (const url of CANDIDATES) {
+    for (const url of DATA_CANDIDATES) {
       try {
         const res = await fetch(url, { cache: 'no-cache' });
         if (res.ok) return await res.json();
@@ -19,18 +25,18 @@
     throw new Error('portfolio.json not reachable from any known path');
   }
 
-  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  function fmtMonth(s) {
-    if (!s) return '';
-    const [y, m] = String(s).split('-');
-    return m ? `${MONTHS[parseInt(m, 10) - 1]} ${y}` : y;
+  async function loadContent(ref) {
+    // Offline/preview builds inject markdown bodies as a global, keyed by content_ref.
+    if (window.__CONTENT__ && window.__CONTENT__[ref] != null) return window.__CONTENT__[ref];
+    for (const url of [ref, '../' + ref]) {
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (res.ok) return await res.text();
+      } catch (_) { /* try next */ }
+    }
+    throw new Error('content not reachable: ' + ref);
   }
-  function roleRange(role) {
-    const start = fmtMonth(role.start);
-    const end = role.end ? fmtMonth(role.end) : 'Present';
-    if (!start && !role.end) return 'dates TBC';
-    return `${start || '?'} → ${end}`;
-  }
+
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   }
@@ -40,72 +46,111 @@
     if (html != null) e.innerHTML = html;
     return e;
   }
-
-  function renderTimeline(container, data) {
-    container.innerHTML = '';
-    const byRole = {};
-    data.achievements.forEach(a => { (byRole[a.role_id] = byRole[a.role_id] || []).push(a); });
-
-    data.roles.forEach((role, i) => {
-      const isCurrent = i === 0 && !role.end;
-      const entry = el('div', 'entry' + (isCurrent ? ' current' : ''));
-      entry.appendChild(el('div', 'when', esc(roleRange(role) + (isCurrent ? ' · current' : ''))));
-      entry.appendChild(el('div', 'title', esc(role.title)));
-      entry.appendChild(el('div', 'org', esc(role.company + (role.location ? ' · ' + role.location : ''))));
-
-      const ul = el('ul');
-      if (role.scope) ul.appendChild(el('li', null, esc(role.scope)));
-      (byRole[role.id] || []).forEach(a => {
-        const bullet = (a.resume_bullets && a.resume_bullets[0]) || a.title;
-        ul.appendChild(el('li', null, esc(bullet)));
-      });
-      if (!ul.children.length) ul.appendChild(el('li', null, '<span class="muted">—</span>'));
-      entry.appendChild(ul);
-      container.appendChild(entry);
-    });
+  function statusChip(status) {
+    const map = { shipped: 'sage', 'in-progress': 'peach', archived: 'outline' };
+    return `<span class="chip ${map[status] || 'outline'}">${esc(status || '—')}</span>`;
   }
 
-  function renderCases(container, data) {
-    container.innerHTML = '';
-    const cases = data.achievements.filter(a => a.showcase);
-    cases.forEach((a, i) => {
-      const card = el('a', 'proj-card');
-      card.href = '#';
-      card.addEventListener('click', e => e.preventDefault());
-      const pid = 'CS-' + String(i + 1).padStart(2, '0');
-      const stack = (a.skills || []).slice(0, 3).map(esc).join(' · ');
-      const result = (a.metrics && a.metrics.length) ? a.metrics[0] : '—';
-      const tags = (a.tags || []).slice(0, 3).map(esc).join(' · ');
-      card.innerHTML =
-        `<div class="ph-head"><span class="pid">${esc(pid)}</span><span>${esc(a.date || '')}</span></div>` +
-        `<h3>${esc(a.title)}</h3>` +
-        `<p>${esc(a.star ? a.star.result : '')}</p>` +
-        `<div class="meta">` +
-          `<div class="mk">Stack</div><div class="mv">${stack || '<span class="muted">—</span>'}</div>` +
-          `<div class="mk">Result</div><div class="mv sage">${esc(result)}</div>` +
-          `<div class="mk">Tags</div><div class="mv peach">${tags}</div>` +
-        `</div>`;
-      container.appendChild(card);
-    });
-    return cases.length;
+  function siteProjects(data) {
+    return data.achievements.filter(a => a.type === 'project' && a.surface !== 'resume');
+  }
+
+  /* ---------- projects.html ---------- */
+  function renderProjects(container, data) {
+    const projects = siteProjects(data);
+    function paint(filter) {
+      container.innerHTML = '';
+      const shown = projects.filter(p => filter === 'all' || p.category === filter);
+      shown.forEach((p, i) => {
+        const proj = p.project || {};
+        const card = el('a', 'proj-card');
+        card.href = 'project.html?id=' + encodeURIComponent(p.id);
+        const pid = (p.category === 'personal' ? 'PR-' : 'WK-') + String(i + 1).padStart(2, '0');
+        const stack = (proj.stack || []).slice(0, 4).map(s => `<span class="chip">${esc(s)}</span>`).join('');
+        card.innerHTML =
+          `<div class="ph-head"><span class="pid">${esc(pid)}</span><span>${esc(p.category)} · ${esc(p.date || '')}</span></div>` +
+          `<h3>${esc(p.title)}</h3>` +
+          `<p>${esc(proj.summary || (p.star ? p.star.result : ''))}</p>` +
+          `<div style="margin:10px 0 12px;">${stack}</div>` +
+          `<div class="proj-foot">${statusChip(proj.status)}<span class="arr">Open →</span></div>`;
+        container.appendChild(card);
+      });
+      if (!shown.length) container.appendChild(el('p', 'muted', 'Nothing here yet.'));
+    }
+
+    const filterRow = document.querySelector('[data-filter]');
+    if (filterRow) {
+      const counts = {
+        all: projects.length,
+        work: projects.filter(p => p.category === 'work').length,
+        personal: projects.filter(p => p.category === 'personal').length,
+      };
+      filterRow.querySelectorAll('.filter-chip').forEach(chip => {
+        const f = chip.dataset.f;
+        chip.textContent = chip.textContent.replace(/\s*\(\d+\)$/, '') + ` (${counts[f] ?? 0})`;
+        chip.addEventListener('click', () => {
+          filterRow.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('on'));
+          chip.classList.add('on');
+          paint(f);
+        });
+      });
+    }
+    paint('all');
+    document.querySelectorAll('[data-project-count]').forEach(e => { e.textContent = projects.length; });
+  }
+
+  /* ---------- project.html ---------- */
+  async function renderDetail(root, data) {
+    const id = new URLSearchParams(location.search).get('id');
+    const p = data.achievements.find(a => a.id === id && a.type === 'project');
+    if (!p) {
+      root.innerHTML = `<div class="panel"><h3>Project not found</h3><p class="muted">No project with id <code>${esc(id || '')}</code>. <a href="projects.html">Back to projects →</a></p></div>`;
+      return;
+    }
+    const proj = p.project || {};
+    document.title = p.title + ' — portfolio';
+
+    const head = document.querySelector('[data-detail-head]');
+    if (head) {
+      const stack = (proj.stack || []).map(s => `<span class="chip">${esc(s)}</span>`).join('');
+      const links = (proj.links || []).filter(l => l.url)
+        .map(l => `<a class="btn ghost" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label || 'Link')} →</a>`).join('');
+      head.innerHTML =
+        `<span class="kicker">${esc(p.category)} · ${esc(proj.status || '')} · ${esc(p.date || '')}</span>` +
+        `<h1>${esc(p.title)}</h1>` +
+        `<p class="sub">${esc(proj.summary || '')}</p>` +
+        (proj.my_role ? `<p class="muted" style="margin:-10px 0 18px;max-width:620px;"><b>My role:</b> ${esc(proj.my_role)}</p>` : '') +
+        `<div style="margin-bottom:16px;">${stack}</div>` +
+        (links ? `<div class="actions">${links}<a class="btn ghost" href="projects.html">← All projects</a></div>`
+                : `<div class="actions"><a class="btn ghost" href="projects.html">← All projects</a></div>`);
+    }
+
+    const body = document.querySelector('[data-detail-body]');
+    if (body) {
+      try {
+        const md = await loadContent(proj.content_ref);
+        body.innerHTML = window.renderMarkdown(md);
+        if (window.initDiagrams) window.initDiagrams(body);
+      } catch (err) {
+        console.error(err);
+        body.innerHTML = `<p class="muted">Couldn't load the write-up (<code>${esc(proj.content_ref || '')}</code>). Serve the site over HTTP or run the offline build.</p>`;
+      }
+    }
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
-    const timeline = document.querySelector('[data-roles]');
-    const cases = document.querySelector('[data-cases]');
-    if (!timeline && !cases) return;
-
+    const projects = document.querySelector('[data-projects]');
+    const detail = document.querySelector('[data-detail]');
+    if (!projects && !detail) return;
     try {
       const data = await loadPortfolio();
-      if (timeline) renderTimeline(timeline, data);
-      const caseCount = cases ? renderCases(cases, data) : 0;
-      document.querySelectorAll('[data-role-count]').forEach(e => { e.textContent = data.roles.length; });
-      document.querySelectorAll('[data-case-count]').forEach(e => { e.textContent = caseCount; });
+      if (projects) renderProjects(projects, data);
+      if (detail) await renderDetail(detail, data);
     } catch (err) {
       console.error(err);
       const msg = 'Serve the site over HTTP (e.g. <code>python -m http.server</code> from the repo root) so the browser can fetch data/portfolio.json.';
-      if (timeline) timeline.innerHTML = `<div class="entry"><div class="title">Couldn't load portfolio data</div><ul><li class="muted">${msg}</li></ul></div>`;
-      if (cases) cases.innerHTML = `<span class="kicker muted">${msg}</span>`;
+      if (projects) projects.innerHTML = `<p class="muted">${msg}</p>`;
+      if (detail) detail.innerHTML = `<div class="panel"><p class="muted">${msg}</p></div>`;
     }
   });
 })();

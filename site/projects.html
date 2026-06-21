@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Tame ResizeObserver "loop completed" noise — well-known harmless warning.
+(function(){
+  const RO = window.ResizeObserver;
+  if (RO) {
+    window.ResizeObserver = class extends RO {
+      constructor(cb){ super((es, ob) => { requestAnimationFrame(() => cb(es, ob)); }); }
+    };
+  }
+  const orig = console.error;
+  console.error = function(){
+    const a = arguments[0];
+    if (typeof a === 'string' && /ResizeObserver loop/.test(a)) return;
+    if (a && a.message && /ResizeObserver loop/.test(a.message)) return;
+    return orig.apply(console, arguments);
+  };
+  window.addEventListener('error', e => {
+    if (e && e.message && /ResizeObserver loop/.test(e.message)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — portfolio</title>
+<link rel="stylesheet" href="crt.css">
+</head>
+<body>
+  <main class="shell" data-screen-label="02 Projects">
+
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">portfolio<span class="dot">.</span></a>
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab active" href="projects.html">Projects</a>
+      <a class="tab" href="about.html">About</a>
+      <span class="nav-spacer"></span>
+      <span class="nav-meta">Singapore · <span data-clock>--:--</span> SGT</span>
+    </nav>
+
+    <section class="hero" style="position: relative;">
+      <div class="deco circle-sage" style="right: 0; top: 40px; opacity: 0.5; width: 150px; height: 150px;"></div>
+      <span class="kicker">~/projects</span>
+      <h1>Things I've<br><span class="swoop sage">built</span><span class="sage">.</span></h1>
+      <p class="sub">
+        Selected work &amp; personal projects — what each one is, how it's put together,
+        and the calls I made along the way. Looking for the CV?
+        <a href="about.html">Download it on the About page</a>.
+      </p>
+    </section>
+
+    <div class="filter-row" data-filter style="margin: 22px 0 18px;">
+      <span class="kicker" style="margin-right: 6px;">Filter</span>
+      <button class="filter-chip on" data-f="all">All</button>
+      <button class="filter-chip" data-f="work">Work</button>
+      <button class="filter-chip" data-f="personal">Personal</button>
+    </div>
+
+    <div class="grid cols-2" data-projects>
+      <a class="proj-card" href="#"><h3>Loading…</h3></a>
+    </div>
+
+    <div class="statusbar" style="margin-top: 32px;">
+      <div class="seg"><span class="led"></span><b>projects.log</b></div>
+      <div class="seg">Career uptime <b data-uptime>0d 00:00:00</b></div>
+      <div class="seg"><span data-project-count>—</span> projects · from the log</div>
+      <div class="seg right">EOF — <b>/projects</b></div>
+    </div>
+
+  </main>
+  <script src="portfolio.js"></script>
+  <script src="crt.js"></script>
+</body>
+</html>

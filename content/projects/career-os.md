@@ -30,9 +30,9 @@ flowchart TD
 The split that makes this work: **structured, queryable fields live in JSON** (title, tags,
 metrics, stack, short decision list) — that's what the resume engine scores and what the cards
 render. **Long-form narrative lives in markdown** (this file) — multi-paragraph architecture
-write-ups, the reasoning behind decisions, reflections, and diagrams. The build step
-pre-renders the markdown to static HTML so the live site ships no runtime markdown library and
-works offline.
+write-ups, the reasoning behind decisions, reflections, and diagrams. A tiny zero-dependency
+renderer turns the markdown into HTML in the browser, and the offline build bakes the content
+in so detail pages work from `file://` too.
 
 ## Decisions & trade-offs
 
@@ -42,8 +42,9 @@ works offline.
 - **JSON for structure, markdown for prose** — keeps the resume engine reading clean fields
   while project pages get real narrative and diagrams. The cost: two files per project to keep
   in sync.
-- **Pre-render markdown at build time** — static HTML, offline-friendly, fast. The cost: a
-  build step.
+- **Render markdown client-side with a zero-dependency renderer** — no build toolchain or
+  runtime library, and the offline build bakes content in. The cost: diagrams lazy-load mermaid
+  and fall back to source text when offline.
 
 ## Reflection
 
