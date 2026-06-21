@@ -2,8 +2,9 @@
   "$schema": "./portfolio.schema.json",
   "meta": {
     "generated_from": "accomplishments-log.md",
-    "last_distilled": "2026-06-13",
-    "note": "STRUCTURED layer. Humans capture wins in accomplishments-log.md (prose); the AI workflow distills them here. The showcase site and the resume engine both read from this file."
+    "last_distilled": "2026-06-21",
+    "schema_version": 2,
+    "note": "STRUCTURED layer. Records are routed by metadata: `type` (project|win), `category` (work|personal), `surface` (resume|website|both). The website renders type:project records where surface∈{website,both}; the resume engine reads records where surface∈{resume,both}. Long-form project narrative (architecture, decisions, reflections, diagrams) lives in the markdown file named by project.content_ref."
   },
   "profile": {
     "name": "Azmi",
@@ -67,16 +68,6 @@
       "end": "2022-07",
       "location": "Apprenticeship",
       "scope": "PowerX Software & Development Programme; contributed to STACS Network / Greenprint ESG registry (MAS partnership)."
-    },
-    {
-      "id": "ra-sutd-asi",
-      "title": "Research Assistant",
-      "company": "Aviation Studies Institute (SUTD)",
-      "start": null,
-      "end": null,
-      "location": "Singapore",
-      "scope": "Dates need verification.",
-      "verify": true
     }
   ],
   "achievements": [
@@ -85,6 +76,9 @@
       "role_id": "lead-esgpedia",
       "date": "2026-04",
       "title": "Stepped into Software Engineering Lead role",
+      "category": "work",
+      "type": "win",
+      "surface": "resume",
       "tags": ["promotion", "leadership", "transition"],
       "skills": ["people management", "1:1 coaching", "sprint planning"],
       "metrics": ["0 attrition since taking over", "2 direct reports across 2 timezones", "7-engineer backend AAR scope"],
@@ -97,33 +91,16 @@
       "resume_bullets": [
         "Promoted to Software Engineering Lead managing 2 remote backend engineers (Indonesia & Philippines); own sprint planning and developer briefings with the PM, and run sprint AARs across a 7-engineer backend group.",
         "Coached the longer-tenured direct report to autonomous ownership of multiple modules with minimal intervention; 0 attrition since stepping into the Lead role."
-      ],
-      "showcase": true
-    },
-    {
-      "id": "pair-design-tdd",
-      "role_id": "lead-esgpedia",
-      "date": "2026-04",
-      "title": "Mentored direct report via pair-designed TDDs on 2 modules",
-      "tags": ["mentoring", "coaching", "technical-design", "tdd"],
-      "skills": ["mentorship", "technical design", "coaching"],
-      "metrics": ["2 modules pair-designed"],
-      "star": {
-        "situation": "A direct report raised a performance-review goal: drive TDDs (Technical Design Documents) for new modules, not just implement.",
-        "task": "Convert the goal into reps — model the design process, not just review output.",
-        "action": "Ran pair-design sessions on 2 modules — scope, structure, trade-offs and the TDD write-up done together to make the process visible.",
-        "result": "Tracking over time: whether he produces TDDs unprompted, design quality in review, peers routing design questions to him."
-      },
-      "resume_bullets": [
-        "Translated a direct report's performance-review goal into structured practice — running pair-design sessions on 2 modules to model the Technical Design Document process and grow him from implementer toward designer-level module ownership."
-      ],
-      "showcase": true
+      ]
     },
     {
       "id": "aar-redesign",
       "role_id": "lead-esgpedia",
       "date": "2026",
       "title": "Redesigned sprint AAR format to lift remote-team participation",
+      "category": "work",
+      "type": "win",
+      "surface": "resume",
       "tags": ["process", "aar", "team-culture", "remote-first", "leadership"],
       "skills": ["process design", "facilitation", "remote leadership"],
       "metrics": ["~5 → ~10–15 bullets per AAR (≈2–3× participation)"],
@@ -135,33 +112,37 @@
       },
       "resume_bullets": [
         "Redesigned the sprint AAR format for a 7-engineer remote backend team — migrated the working doc out of VPN-gated Confluence into Teams, added a peer-appreciation column and a focused discussion section, and rotated in a light game segment — lifting written participation from ~5 to 10–15 bullets per AAR (≈2–3× more dev input)."
-      ],
-      "showcase": true
+      ]
     },
     {
-      "id": "ai-knowledge-base",
-      "role_id": "lead-esgpedia",
-      "date": "2026",
-      "title": "AI-driven in-repo knowledge base (in progress)",
-      "tags": ["ai", "documentation", "knowledge-base", "tooling", "experiment", "in-progress"],
-      "skills": ["AI tooling", "documentation strategy"],
+      "id": "hiring-interviews",
+      "role_id": "swe-esgpedia",
+      "date": "2024",
+      "title": "Interviewed remote backend candidates (2-round process)",
+      "category": "work",
+      "type": "win",
+      "surface": "resume",
+      "tags": ["hiring", "interviewing", "leadership-signal"],
+      "skills": ["technical interviewing", "hiring"],
       "metrics": [],
       "star": {
-        "situation": "Earlier Confluence docs went stale; codebase remained the de facto source of truth but discoverability was poor.",
-        "task": "Get knowledge closer to the code and lower the cost of keeping it current.",
-        "action": "Running a hands-on experiment using AI to generate/maintain a knowledge-based README inside the codebase.",
-        "result": "Too early — tracking adoption, currency, onboarding speed, and survival through a real refactor."
+        "situation": "Growing team needed help vetting remote backend candidates.",
+        "task": "Run technical interviews and give hire/no-hire signal.",
+        "action": "Ran a 2-round process: technical round (live coding + targeted questions) and a follow-up behavioural/fit round; assessed and fed signal to the hiring panel.",
+        "result": "Quantify later: # interviewed, # hired still on the team."
       },
       "resume_bullets": [
-        "Leading an exploration of AI-generated in-repo knowledge bases as a successor to stale Confluence docs — bringing architectural knowledge into the codebase and reducing doc-maintenance cost."
-      ],
-      "showcase": false
+        "Conducted 2-round technical interviews (live coding + technical Q&A, then behavioural Q&A) for remote backend candidates, contributing to hiring decisions and helping scale the team."
+      ]
     },
     {
       "id": "esg-question-customisation",
       "role_id": "senior-esgpedia",
       "date": "2025",
       "title": "Architected ESG question-customisation module (per-asset + per-group scoping)",
+      "category": "work",
+      "type": "project",
+      "surface": "both",
       "tags": ["architecture", "feature-ownership", "esg", "data-model", "access-scoping"],
       "skills": ["architecture", "data modeling", "backend", "API design"],
       "metrics": [],
@@ -174,13 +155,30 @@
       "resume_bullets": [
         "Architected and delivered an ESG question-customisation module that replaced a fixed org-wide question set with per-asset curation and per-user-group assignment — showing each user only their relevant questions and letting orgs distribute data-entry work."
       ],
-      "showcase": true
+      "project": {
+        "summary": "Replaced ESG's fixed org-wide question set with per-asset curation and per-user-group assignment.",
+        "my_role": "Architected end-to-end and delivered the backend — data model, APIs, persistence, scoping logic.",
+        "stack": ["Java", "Spring Boot", "REST APIs", "MySQL"],
+        "status": "shipped",
+        "links": [],
+        "content_ref": "content/projects/esg-question-customisation.md",
+        "decisions": [
+          {
+            "decision": "Per-asset question subsets plus a separate group-assignment layer",
+            "why": "Each org should see only questions relevant to its assets, and be able to distribute data entry to the right people",
+            "tradeoff": "A more complex data model than a single flat question set"
+          }
+        ]
+      }
     },
     {
       "id": "superset-s3-presigned",
       "role_id": "senior-esgpedia",
       "date": "2025",
       "title": "Apache Superset integration with secure S3-presigned document downloads",
+      "category": "work",
+      "type": "project",
+      "surface": "both",
       "tags": ["full-stack", "apache-superset", "aws-s3", "presigned-urls", "bi-integration"],
       "skills": ["full-stack", "AWS S3", "BI integration", "secure design"],
       "metrics": [],
@@ -193,13 +191,35 @@
       "resume_bullets": [
         "Built a full-stack Apache Superset ↔ S3 integration — records keyed by UUID, a backend endpoint returning short-lived presigned URLs, and direct client-to-S3 downloads — exposing documents to BI users without leaking S3 paths or routing large transfers through the backend."
       ],
-      "showcase": true
+      "project": {
+        "summary": "Surfaced document-backed records in Superset with one-click downloads via short-lived S3 presigned URLs.",
+        "my_role": "Full-stack — Superset data layer, the UI download button, and the backend presigned-URL endpoint.",
+        "stack": ["Apache Superset", "AWS S3", "Java", "Spring Boot"],
+        "status": "shipped",
+        "links": [],
+        "content_ref": "content/projects/superset-s3-presigned.md",
+        "decisions": [
+          {
+            "decision": "Key rows by document UUID and resolve to a presigned URL server-side",
+            "why": "Keep real S3 paths private and make download links short-lived",
+            "tradeoff": "An extra backend round-trip per download"
+          },
+          {
+            "decision": "Client downloads directly from S3, not through the backend",
+            "why": "Avoid routing large byte transfers through the application server",
+            "tradeoff": "Depends on presigned-URL expiry handling being correct"
+          }
+        ]
+      }
     },
     {
       "id": "emissions-calculator",
       "role_id": "swe-esgpedia",
       "date": "2024",
       "title": "On-the-fly emissions calculator + hot-reload cache",
+      "category": "work",
+      "type": "project",
+      "surface": "both",
       "tags": ["backend", "performance", "cache", "async", "esg", "emissions"],
       "skills": ["backend", "performance", "caching", "async processing"],
       "metrics": ["~3 seconds saved per update"],
@@ -212,13 +232,35 @@
       "resume_bullets": [
         "Built an on-the-fly emissions calculator and hot-reload caching layer alongside the async-on-save pipeline — letting users preview totals instantly instead of round-tripping through saves, saving ~3 seconds per update and keeping cached values fresh on upstream factor changes."
       ],
-      "showcase": true
+      "project": {
+        "summary": "Live emissions preview plus a hot-reload factor cache, alongside the async-on-save pipeline.",
+        "my_role": "Backend — the on-the-fly calculator, the caching layer, and the async persistence path.",
+        "stack": ["Java", "Spring Boot", "caching"],
+        "status": "shipped",
+        "links": [],
+        "content_ref": "content/projects/emissions-calculator.md",
+        "decisions": [
+          {
+            "decision": "Separate a non-persisting on-the-fly calculator from the async-on-save path",
+            "why": "Let users preview totals without a save round-trip while persisted values stay consistent",
+            "tradeoff": "Two calculation paths that must agree"
+          },
+          {
+            "decision": "Hot-reload cache for emission factors",
+            "why": "Propagate upstream factor changes without a restart or cold-cache penalty",
+            "tradeoff": "Cache-invalidation complexity"
+          }
+        ]
+      }
     },
     {
       "id": "ocr-textract-mvp",
       "role_id": "swe-esgpedia",
       "date": "2023",
       "title": "One-week MVP for in-house OCR (AWS Textract, Python)",
+      "category": "work",
+      "type": "project",
+      "surface": "both",
       "tags": ["aws-textract", "ocr", "mvp", "python", "integration-design"],
       "skills": ["Python", "AWS Textract", "integration design", "rapid prototyping"],
       "metrics": ["~1 week to working MVP"],
@@ -231,13 +273,35 @@
       "resume_bullets": [
         "Prototyped an in-house OCR service in Python on AWS Textract within one week, designing a custom adapter to expose OCR results without coupling to vendor response shapes."
       ],
-      "showcase": true
+      "project": {
+        "summary": "One-week in-house OCR MVP on AWS Textract, fronted by a custom adapter.",
+        "my_role": "Built the POC and designed the adapter integration surface.",
+        "stack": ["Python", "AWS Textract"],
+        "status": "archived",
+        "links": [],
+        "content_ref": "content/projects/ocr-textract-mvp.md",
+        "decisions": [
+          {
+            "decision": "Wrap Textract behind a custom adapter",
+            "why": "Let the backend consume OCR output without coupling to the vendor's response shape",
+            "tradeoff": "An adapter layer to maintain"
+          },
+          {
+            "decision": "Later retired the in-house pipeline and outsourced OCR",
+            "why": "Textract lacked coverage for the languages we ultimately needed",
+            "tradeoff": "Lost the in-house pipeline, but the integration design and POC learnings stand"
+          }
+        ]
+      }
     },
     {
       "id": "flyway-rollout",
       "role_id": "swe-esgpedia",
       "date": "2023",
       "title": "Rolled out Flyway across 4 DB connections (3 SQL + 1 MongoDB)",
+      "category": "work",
+      "type": "project",
+      "surface": "both",
       "tags": ["flyway", "devops", "database", "ci-cd", "migrations"],
       "skills": ["Flyway", "CI/CD", "database migrations", "DevOps"],
       "metrics": ["4 DB connections (3 SQL + 1 MongoDB)", "manual patching eliminated"],
@@ -250,64 +314,65 @@
       "resume_bullets": [
         "Rolled out Flyway across 4 database connections (3 SQL + 1 MongoDB), standardizing versioned naming so migrations auto-run on every deploy — eliminating manual data patching and producing a version-controlled audit trail."
       ],
-      "showcase": true
+      "project": {
+        "summary": "Brought Flyway to all 4 DB connections (3 SQL + 1 MongoDB) with migrations auto-running on deploy.",
+        "my_role": "Introduced Flyway from dev outward, standardized versioned naming, and wired it into the deploy pipeline.",
+        "stack": ["Flyway", "MySQL", "MongoDB", "CI/CD"],
+        "status": "shipped",
+        "links": [],
+        "content_ref": "content/projects/flyway-rollout.md",
+        "decisions": [
+          {
+            "decision": "Versioned naming + auto-run on every deploy",
+            "why": "Make DB changes reproducible, deploy-tied, and auditable with a version-history audit trail",
+            "tradeoff": "Migrations must be forward-safe; requires team discipline"
+          }
+        ]
+      }
     },
     {
-      "id": "confluence-docs",
-      "role_id": "swe-esgpedia",
-      "date": "2023",
-      "title": "Initiated codebase & schema documentation on Confluence",
-      "tags": ["documentation", "knowledge-sharing", "initiative", "confluence"],
-      "skills": ["documentation", "knowledge sharing", "initiative"],
+      "id": "career-os",
+      "role_id": null,
+      "date": "2026-06",
+      "title": "Career OS — a capture-once career system",
+      "category": "personal",
+      "type": "project",
+      "surface": "website",
+      "tags": ["ai", "tooling", "career", "automation", "static-site"],
+      "skills": ["system design", "data modeling", "AI tooling", "static site"],
       "metrics": [],
       "star": {
-        "situation": "Codebase and schema docs were thin; onboarding leaned on tribal knowledge.",
-        "task": "Externalize knowledge so others could ramp up.",
-        "action": "Set up structured Confluence docs for components and DB schemas — the first deliberate move of knowledge into a shared place.",
-        "result": "Became the source of truth for a stretch and cut ad-hoc questions. (Later went stale; seeded the practice that evolved into the in-repo AI knowledge-base experiment.)"
+        "situation": "Career wins were scattered and resumes were rebuilt from scratch for each application.",
+        "task": "Capture accomplishments once and reuse them across a public showcase and tailored resumes.",
+        "action": "Designed a single routed record store feeding a project-showcase site, a downloadable resume, and a JD-tailoring engine; built the data layer and the site.",
+        "result": "In progress — data layer and site live; capture skill and resume engine in build."
       },
-      "resume_bullets": [
-        "Initiated the first formal documentation for the codebase and database schemas on Confluence, externalizing tribal knowledge during rapid team growth and seeding the practice that later evolved into in-repo, AI-assisted docs."
-      ],
-      "showcase": false
-    },
-    {
-      "id": "hiring-interviews",
-      "role_id": "swe-esgpedia",
-      "date": "2024",
-      "title": "Interviewed remote backend candidates (2-round process)",
-      "tags": ["hiring", "interviewing", "leadership-signal"],
-      "skills": ["technical interviewing", "hiring"],
-      "metrics": [],
-      "star": {
-        "situation": "Growing team needed help vetting remote backend candidates.",
-        "task": "Run technical interviews and give hire/no-hire signal.",
-        "action": "Ran a 2-round process: technical round (live coding + targeted questions) and a follow-up behavioural/fit round; assessed and fed signal to the hiring panel.",
-        "result": "Quantify later: # interviewed, # hired still on the team."
-      },
-      "resume_bullets": [
-        "Conducted 2-round technical interviews (live coding + technical Q&A, then behavioural Q&A) for remote backend candidates, contributing to hiring decisions and helping scale the team."
-      ],
-      "showcase": false
-    },
-    {
-      "id": "asi-research",
-      "role_id": "ra-sutd-asi",
-      "date": null,
-      "title": "Researched ASEAN airspace capacity & 4D flight-trajectory simulation",
-      "tags": ["research", "aviation", "data-analysis", "simulation"],
-      "skills": ["research", "data analysis", "simulation"],
-      "metrics": [],
-      "star": {
-        "situation": "ASI researched optimizing airspace management and manpower allocation across ASEAN.",
-        "task": "Model and analyze airspace network capacity and flight behaviour.",
-        "action": "Analyzed spatial points and simulated 4D flight trajectories based on aircraft equipment and departure times.",
-        "result": "Fed analysis into air-traffic planning proposals. (Verify dates.)"
-      },
-      "resume_bullets": [
-        "Researched ASEAN airspace network capacity and simulated 4D flight trajectories to support regional air-traffic planning optimization at SUTD's Aviation Studies Institute."
-      ],
-      "showcase": false
+      "resume_bullets": [],
+      "project": {
+        "summary": "A personal system that captures career wins once, then drives a public project showcase, a downloadable resume, and JD-tailored resumes.",
+        "my_role": "Designed and built the whole system — data model, showcase site, and the capture-to-publish workflow.",
+        "stack": ["HTML", "CSS", "JavaScript", "Node.js", "Claude Code"],
+        "status": "in-progress",
+        "links": [],
+        "content_ref": "content/projects/career-os.md",
+        "decisions": [
+          {
+            "decision": "One record store routed by surface/type/category",
+            "why": "Capture a win once and feed both the website and the resume engine without duplicating it",
+            "tradeoff": "Every record carries routing metadata"
+          },
+          {
+            "decision": "Structured fields in JSON, long-form narrative in markdown",
+            "why": "The resume engine reads clean fields; project pages get rich prose and diagrams",
+            "tradeoff": "Two files per project to keep in sync"
+          },
+          {
+            "decision": "Pre-render markdown to HTML at build time",
+            "why": "Ship static HTML that works offline with no runtime markdown library",
+            "tradeoff": "Adds a build step"
+          }
+        ]
+      }
     }
   ]
 }

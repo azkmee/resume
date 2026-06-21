@@ -72,19 +72,6 @@ latency / p95 / throughput · # of customers or tenants impacted · uptime / inc
 
 ---
 
-### 2026-04 — Mentoring: pair-designed 2 modules with senior direct report after performance review
-
-**Tags:** `mentoring` `coaching` `performance-review` `technical-design` `tdd` `1-on-1` `growth-plan`
-
-- **Situation:** During the **new-year performance review** (cycle starting April 2026), the longer-tenured direct report (~9 months on the team) raised a growth goal: he wanted to be more involved in writing **TDDs (Technical Design Documents)** for new modules and features — driving the design phase rather than only implementing against specs handed to him.
-- **Task:** Convert that performance-review goal into actual reps. Give him exposure to the full module-design loop — not just review the output, but model the *process* of producing a TDD.
-- **Action:** Ran **pair-design sessions** with him on **2 modules** — working through scope, structure, trade-offs, and the actual TDD write-up *together* rather than producing the design for him. The aim was to make the design process visible so he could internalise the pattern and start owning it independently on the next module.
-- **Result:** _(track over time — does he start producing initial TDDs without prompting? does design quality improve in review? do peers start routing design questions to him?)_
-
-**Resume-bullet draft:** *Translated a direct report's performance-review goal into structured practice — running pair-design sessions on 2 modules to model the Technical Design Document process and grow him from implementer toward designer-level module ownership.*
-
----
-
 ### 2026 — Redesigned sprint AAR format to lift participation in a remote team
 
 **Tags:** `process` `aar` `team-culture` `remote-first` `leadership`
@@ -99,19 +86,6 @@ latency / p95 / throughput · # of customers or tenants impacted · uptime / inc
 - **Result:** Written contributions per AAR went from **~5 bullets total → ~10–15 bullets shared across all sections** (roughly 2–3× participation). Devs now show up to the meeting with input already on the page, and the appreciation column has become a steady source of peer recognition in a fully remote setup. _(Add anything you pick up later — sentiment in 1:1s, retention, faster decisions.)_
 
 **Resume-bullet draft:** *Redesigned sprint AAR format for a 7-engineer remote backend team — migrated the working doc out of VPN-gated Confluence into a live Teams document, introduced a peer-appreciation column and a focused "topics to discuss" section, and rotated in a light game segment to combat remote fatigue — lifting written participation from ~5 to 10–15 bullets per AAR (≈2–3× more dev input).*
-
----
-
-### 2026 — Experimenting with AI-driven in-repo knowledge base (in progress)
-
-**Tags:** `ai` `documentation` `knowledge-base` `tooling` `experiment` `leadership` `in-progress`
-
-- **Situation:** The earlier wave of Confluence documentation (initiated during SWE years) has gone stale — pages weren't being updated, and the codebase remained the de facto source of truth, but discoverability inside the repo was still poor.
-- **Task:** Get knowledge closer to the code and lower the ongoing cost of keeping it current.
-- **Action:** Running a hands-on experiment using **AI to generate and maintain a knowledge-based README inside the codebase** — _(fill in as the experiment matures: which AI tool/agent is in use, what scope is covered first, who's involved, what kinds of questions it should answer)_.
-- **Result:** _(too early to call — track: do teammates actually consult it? does it stay current with low maintenance? does onboarding feel faster? does it survive a real refactor?)_
-
-**Resume-bullet draft:** *Leading an exploration of AI-generated in-repo knowledge bases as a successor to stale Confluence documentation — bringing architectural and operational knowledge into the codebase itself and reducing the maintenance cost of keeping docs current.*
 
 ---
 
@@ -189,19 +163,6 @@ latency / p95 / throughput · # of customers or tenants impacted · uptime / inc
 
 ---
 
-### ~2023–2024 — Initiated codebase & schema documentation on Confluence
-
-**Tags:** `documentation` `knowledge-sharing` `initiative` `confluence`
-
-- **Situation:** Codebase components and database schemas had limited written documentation; onboarding and cross-team handoffs leaned heavily on tribal knowledge.
-- **Task:** Externalize that knowledge so the system was more maintainable and people other than me could ramp up.
-- **Action:** Set up structured documentation on **Confluence** covering codebase components and database schemas — the first deliberate attempt to move knowledge out of heads and chat threads into a shared, browsable place.
-- **Result:** Confluence became the source of truth for a stretch and reduced ad-hoc questions during that window. **Honest current status:** the pages have gone stale — updates lapsed over time and the team has since moved on to a different approach (see the Lead-era AI-driven in-repo knowledge base experiment under the Lead role section). The original initiative still counts because it seeded the practice and proved there was demand for written knowledge.
-
-**Resume-bullet draft:** *Initiated and structured the first formal documentation for the codebase and database schemas on Confluence, externalizing tribal knowledge during a phase of rapid team growth and seeding the practice that later evolved into in-repo, AI-assisted documentation.*
-
----
-
 ### ~2023 — One-week MVP for in-house OCR (AWS Textract, Python)
 
 **Tags:** `aws-textract` `ocr` `mvp` `python` `integration-design` `poc`
@@ -261,23 +222,6 @@ latency / p95 / throughput · # of customers or tenants impacted · uptime / inc
 
 ---
 
-## Pre-ESGpedia / Other Experience
-
-### Research Assistant — Aviation Studies Institute (SUTD)
-*Dates: ⚠️ verify — old resume listed 2010–2013, which can't be right since B.E. was 2017–2020. Likely a university stint (somewhere in 2017–2021).*
-*https://asi.sutd.edu.sg*
-
-**Tags:** `research` `aviation` `data-analysis` `simulation`
-
-- **Situation:** ASI was researching how to optimize airspace management and manpower allocation across the ASEAN region.
-- **Task:** Help model and analyze airspace network capacity and flight behaviour to inform planning decisions.
-- **Action:** Researched ASEAN airspace network capacity; analyzed spatial points and simulated **4D flight trajectories** based on aircraft equipment and departure times.
-- **Result:** Contributed analysis that fed into proposals to improve air traffic planning and efficiency across SEA _(fill in if any specific publication, presentation, or downstream decision came of it)_.
-
-**Resume-bullet draft:** *Researched ASEAN airspace network capacity and simulated 4D flight trajectories to support optimization of regional air traffic planning at SUTD's Aviation Studies Institute.*
-
----
-
 ## Education
 
 - **B.E. (Hons), Engineering Systems & Design** — Singapore University of Technology and Design (SUTD), 2017–2020
@@ -323,14 +267,9 @@ latency / p95 / throughput · # of customers or tenants impacted · uptime / inc
 - [~] Capture team size context — done except for exact frontend headcount
 - [x] ~~Quantify the AAR reformat~~ — written participation went from ~5 → ~10–15 bullets per AAR (≈2–3×). Captured. Layer in sentiment/retention signals over time.
 - [x] ~~Capture a first concrete "early win" Result under the 2026-04 Lead-transition entry~~ — done: 0 attrition, longer-tenured report at autonomy on multiple modules, newer report onboarding cleanly
-- [x] ~~Watch the coaching outcome~~ — already paid off: the pair-design mentoring entry now stands on its own under the Lead role. Keep adding to it as the senior direct report starts producing designs independently.
-- [x] ~~Confirm what "TDD" means in the pair-design entry~~ — confirmed: **Technical Design Document**. Disclaimer dropped from the entry.
 - [x] ~~Internship section backfill~~ — intentionally out of scope. Section now carries just historical context (PowerX, STACS/Greenprint/MAS) with a scope note.
-- [ ] **⚠️ Verify Aviation Studies Institute dates** — old resume says 2010–2013 which conflicts with B.E. 2017–2020. Fix to actual dates.
 - [ ] Decide which old SWE bullets actually happened *after* the Senior promotion (Apr 2025) and move them up — esp. interviewing remote candidates, which sounds Senior-era
 - [~] Quantify the hiring entry — format captured (2 rounds: tech + Q&A); **still need numbers**: # of candidates interviewed, # hired who are still on the team. *(Current-team angle is closed: confirmed neither direct report came through this pipeline.)*
-- [x] ~~Add metric to the documentation entry~~ — context captured: Confluence-based, now stale; successor experiment using AI for in-repo READMEs has its own entry under Lead role
-- [ ] AI knowledge-base experiment — fill in: which AI tool/agent, initial scope (which modules), who's involved, criteria for "is this working"
 - [x] ~~Flyway entry: which environments, naming conventions, rollback~~ — fully filled in (4 DB connections: 3 SQL + 1 MongoDB; Flyway naming convention; auto-run on deploy; version history as audit trail)
 - [x] ~~Confirm where the OCR MVP ended up~~ — no longer maintained; outsourced due to language coverage Textract didn't cover. Captured in entry.
 
