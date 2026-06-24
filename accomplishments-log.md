@@ -222,6 +222,27 @@ latency / p95 / throughput · # of customers or tenants impacted · uptime / inc
 
 ---
 
+## Personal Projects (showcase — `surface: website`)
+
+> Side projects for the public showcase, not the resume. `type: project · category: personal`.
+
+### 2026 — Arabic spaced-repetition app with Telegram reminders
+
+**Tags:** `personal-project` `spaced-repetition` `arabic` `telegram-bot` `llm` `in-progress`
+
+- **Situation:** Wanted a low-friction way to actually retain newly learned Arabic vocabulary instead of forgetting it.
+- **Task:** Schedule revision automatically and generate fresh practice material — without recurring per-call API costs.
+- **Action:** Building a spaced-repetition app that captures new Arabic words (added by the app) and connects to **Telegram** to remind me to revise on a spaced schedule. It generates revision **questions and reading passages** with an LLM driven through a **subscription plan (subscription tokens)** rather than pay-per-use API tokens, to keep generation cost flat.
+- **Result:** _In progress_ — core loop (word capture → Telegram reminders → generated questions/passages) being built.
+
+_Stack note: Telegram Bot API + an LLM via subscription plan. Confirm implementation language/framework when you get a chance._
+
+### 2026 — Career OS (this app)
+
+> Already captured as the `career-os` record in `data/portfolio.json` + `content/projects/career-os.md`. Main purpose: collect career wins once so they're ready when job-hunting. Still building.
+
+---
+
 ## Education
 
 - **B.E. (Hons), Engineering Systems & Design** — Singapore University of Technology and Design (SUTD), 2017–2020

@@ -1,0 +1,37 @@
+{
+  "_comment": "Applicant profile for the apply-job skill. Copy this to the path in $JOB_APPLICANT_PROFILE (default ./.applicant-profile.json, which is gitignored). The skill reads from here; if a form needs a field that is missing, you'll be prompted to add it here and re-run.",
+
+  "full_name": "",
+  "first_name": "",
+  "last_name": "",
+  "email": "",
+  "alt_email": "",
+  "phone": "",
+  "phone_country_code": "+65",
+  "location": "Singapore",
+  "address": { "street": "", "city": "Singapore", "postal_code": "", "country": "Singapore" },
+
+  "linkedin": "",
+  "website": "",
+  "github": "",
+  "recommendation_letter": "",
+
+  "citizenship": "Singapore Citizen",
+  "requires_visa_sponsorship": false,
+  "based_in_singapore": true,
+  "willing_to_relocate": false,
+  "onsite_ok": true,
+  "notice_period": "2 months",
+  "career_start_year": 2021,
+  "current_employer": "ESGpedia",
+
+  "expected_salary": "",
+  "how_did_you_hear": "LinkedIn",
+
+  "eeo": {
+    "race": "Prefer not to say",
+    "gender": "Prefer not to say",
+    "veteran_status": "Prefer not to say",
+    "disability_status": "Prefer not to say"
+  }
+}

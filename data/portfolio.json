@@ -373,6 +373,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "arabic-spaced-repetition",
+      "role_id": null,
+      "date": "2026",
+      "title": "Arabic spaced-repetition app with Telegram reminders",
+      "category": "personal",
+      "type": "project",
+      "surface": "website",
+      "tags": ["spaced-repetition", "arabic", "telegram-bot", "llm", "personal"],
+      "skills": ["app development", "Telegram bot integration", "LLM integration", "spaced repetition"],
+      "metrics": [],
+      "star": {
+        "situation": "Wanted a low-friction way to actually retain newly learned Arabic vocabulary instead of forgetting it.",
+        "task": "Schedule revision automatically and generate fresh practice material without recurring per-call API costs.",
+        "action": "Building a spaced-repetition app that captures new Arabic words (added by the app) and connects to Telegram to remind me to revise on a spaced schedule; it generates revision questions and reading passages with an LLM driven through a subscription plan (subscription tokens) rather than pay-per-use API tokens.",
+        "result": "In progress — core loop (word capture → Telegram reminders → generated questions/passages) being built."
+      },
+      "resume_bullets": [],
+      "project": {
+        "summary": "A spaced-repetition Arabic vocabulary app that reminds me to revise via Telegram and generates practice questions and reading passages using subscription-plan LLM tokens instead of pay-per-use API calls.",
+        "my_role": "Designed and building the whole thing — word capture, the spaced-repetition schedule, the Telegram reminder bot, and LLM-driven generation.",
+        "stack": ["Telegram Bot API", "LLM (subscription plan)"],
+        "status": "in-progress",
+        "links": [],
+        "content_ref": "content/projects/arabic-spaced-repetition.md",
+        "decisions": [
+          {
+            "decision": "Use subscription-plan LLM tokens instead of pay-per-use API tokens",
+            "why": "Keep generation cost flat and predictable for a personal app rather than paying per call",
+            "tradeoff": "Tied to a subscription's quota and interface rather than a clean programmatic API"
+          },
+          {
+            "decision": "Telegram as the reminder and revision surface",
+            "why": "Push revision prompts to a channel checked daily, with no separate app to open",
+            "tradeoff": "Bound to Telegram bot constraints"
+          }
+        ]
+      }
     }
   ]
 }

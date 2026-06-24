@@ -13,6 +13,17 @@ Thumbs.db
 private/
 *.local.md
 
+# Applicant profile (PII — referenced by $JOB_APPLICANT_PROFILE)
+.applicant-profile.json
+
 # Build artifacts (offline site preview)
 dist/
 resume-site-preview.zip
+
+# Applicant account credentials (PII/secrets)
+.applicant-secrets.json
+
+# Job-search PII (keep local, not on public repo)
+resumes/
+tracker/applications-template.csv
+tracker/jd-snapshots/
